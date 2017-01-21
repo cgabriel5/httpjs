@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
     <script src="js/http.js"></script>
     <script src="js/app.js"></script>
-    <title>Ajax Wrapper</title>
+    <title>XHR Wrapper</title>
 </head>
 
 <body>
