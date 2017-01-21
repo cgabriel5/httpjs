@@ -7,6 +7,17 @@
         // =============================== Helper Functions
 
         /**
+         * @description [Generates a simple ID containing letters and numbers.]
+         * @param  {Number} length [The length the ID should be. Max length is 22 characters]
+         * @return {String}        [The newly generated ID.]
+         * @source {http://stackoverflow.com/a/38622545}
+         */
+        function id(length) {
+
+            return Math.random().toString(36).substr(2, length);
+
+        }
+        /**
          * @description [Returns the data type of the object passed or compares against the data type
          *               if provided.]
          * @param  {Any} object         [The object to check.]
@@ -203,8 +214,7 @@
                 if (url) this.options.url = url;
                 // XHR library properties
                 this.properties = {
-                    // generate random id: {http://stackoverflow.com/a/38622545}
-                    "id": Math.random().toString(36).substr(2, 22),
+                    "id": id(22),
                     "callbacks": {},
                     "aborted": false,
                     "locked": false,
