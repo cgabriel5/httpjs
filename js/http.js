@@ -13,9 +13,7 @@
          * @source {http://stackoverflow.com/a/38622545}
          */
         function id(length) {
-
             return Math.random().toString(36).substr(2, length);
-
         }
         /**
          * @description [Returns the data type of the object passed or compares against the data type
