@@ -222,9 +222,6 @@
                     "path": "created"
                 };
 
-                // return self to chain methods
-                return this;
-
             },
 
             // class methods
