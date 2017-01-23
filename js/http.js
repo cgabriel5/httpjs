@@ -147,11 +147,6 @@
                 headers.push(["Content-Type", default_content_type]);
             }
 
-            console.log(">>>>", normalized.url);
-            headers.forEach(function(header, i) {
-                console.log(i, header[0], header[1]);
-            });
-
             // add the events, headers to the normalized object
             normalized.events = events;
             normalized.headers = headers;
