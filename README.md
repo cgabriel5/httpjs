@@ -7,6 +7,7 @@ A lightweight JavaScript XHR wrapper.
 [What It Does](#what-it-does)  
 [Add To Project](#add-to-project)  
 [Access Library](#access-library)  
+[Instance Creation](#instance-creation)  
 [API](#api)  
 * [Global Methods](#global-methods)  
 * [Instance Methods](#instance-methods)  
@@ -44,8 +45,8 @@ A lightweight JavaScript XHR wrapper.
 var http = window.app.libs.http;
 ```
 
-<a name="access-library"></a>
-### Create a Request
+<a name="instance-creation"></a>
+### Instance Creation
 
 ```js
 var req = new http();
