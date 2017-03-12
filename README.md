@@ -9,8 +9,12 @@ A lightweight JavaScript XHR wrapper.
 [Access Library](#access-library)  
 [Instance Creation](#instance-creation)  
 [API](#api)  
-* [Global Methods](#global-methods)  
-* [Instance Methods](#instance-methods)  
+* [Global](#global-api)
+    * [QuickTable](#global-quicktable-reference)  
+    * [Methods](#global-methods-long)  
+* [Instance](#instance-api)
+    * [QuickTable](#instance-quicktable-reference)  
+    * [Methods](#instance-methods-long) 
 
 [Handling HTTP Errors](#handling-http-errors)  
 [Usage](#usage)  
@@ -64,8 +68,18 @@ var req = new http("posts.php?foo=bar");
 <a name="api"></a>
 ### API
 
-<a name="global-methods"></a>
-#### Global Methods
+<a name="global-api"></a>
+### API &mdash; Global
+
+<a name="global-quicktable-reference"></a>
+### Global QuickTable Reference
+
+Method | Function
+------------ | -------------
+**abortAll** | Aborts all pending requests
+
+<a name="global-methods-long"></a>
+### Global Methods
 
 **http.abortAll** &mdash; Aborts all pending requests.
 
@@ -73,7 +87,34 @@ var req = new http("posts.php?foo=bar");
 http.abortAll();
 ```
 
-<a name="instance-methods"></a>
+<a name="instance-api"></a>
+### API &mdash; Instance
+
+<a name="instance-quicktable-reference"></a>
+### Instance QuickTable Reference
+
+Method | Function
+------------ | -------------
+**url** | Sets request URL
+**data** | Sets request data
+**method** | Sets request method
+**fileUpload** | Sets fileUpload flag indicating whether files are being uploaded
+**processData** | Sets processData flag indicating whether the passed data should be processed
+**postJSON** | Sets postJSON flag indicating whether the data should be stringified
+**parseJSON** | Sets parseJSON flag indicating whether the responded data should be parse with JSON.parse()
+**withCredentials** | Sets withCredentials flag indicating whether CORS needs to be used
+**cache** |  Sets cache flag indicating whether cache the request
+**async** | Sets async flag indicating whether request will be async or not
+**header** |  Sets a request header
+**id** | Sets request ID
+**responseType** | Sets request responseType
+**timeout** | Sets request timeout time
+**events** | Sets request events
+**run** | Runs the request
+**getProp** | Gets http object property
+**abort** | Aborts request
+
+<a name="instance-methods-long"></a>
 ### Instance Methods
 
 **http.url** &mdash; Sets request URL.
