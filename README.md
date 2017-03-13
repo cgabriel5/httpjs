@@ -16,8 +16,8 @@ A lightweight JavaScript XHR wrapper.
     * [QuickTable](#instance-quicktable-reference)  
     * [Methods](#instance-methods-long) 
 
-[Handling HTTP Errors](#handling-http-errors)  
 [Usage](#usage)  
+* [Handling HTTP Errors](#handling-http-errors)  
 * [GET](#example-get)  
 * [POST](#example-post)  
 * [Form Upload](#example-form-upload)  
@@ -268,10 +268,11 @@ req.getProp("id"); // returns http instance ID
 req.abort();
 ```
 
-<a name="handling-http-errors"></a>
-### Handling HTTP Errors
+<a name="usage"></a>
+### Usage
 
-A custom function is needed to handle HTTP errors.
+<a name="handling-http-errors"></a>
+**Handling HTTP Errors** &mdash; A custom function is needed to handle HTTP errors.
 
 ```js
 // custom function to check status of request
@@ -280,9 +281,6 @@ function check_status(xhr) {
     else throw new Error(xhr);
 }
 ```
-
-<a name="usage"></a>
-### Usage
 
 <a name="example-get"></a>
 **GET** &mdash; `GET` request.
