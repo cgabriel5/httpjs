@@ -18,8 +18,8 @@ A lightweight JavaScript XHR wrapper.
 
 [Usage](#usage)  
 * [Handling HTTP Errors](#handling-http-errors)  
-* [GET](#example-get)  
 * [POST](#example-post)  
+* [GET](#example-get)  
 * [Form Upload](#example-form-upload)  
 * [File Upload](#example-file-upload)  
 * [Post JSON](#example-post-json)  
@@ -39,7 +39,7 @@ A lightweight JavaScript XHR wrapper.
 ### Add To Project
 
 ```html
-<script src="my_js_directory_path/http.js"></script>
+<script src="path/to/lib.js"></script>
 ```
 
 <a name="access-library"></a>
@@ -282,13 +282,17 @@ function check_status(xhr) {
 }
 ```
 
-<a name="example-get"></a>
-**GET** &mdash; `GET` request.
+<a name="example-post"></a>
+**POST** &mdash; `POST` call.
 
 ```js
 // create a new http request
-var req = new http("test.php?verified=true");
-
+var req = new http("test.php");
+// set wanted options
+req.method("POST");
+// data as a string or within an object maybe passed
+// req.data({ "msg": "Hello World!!", "name": "Selena Gomez", "simple_post": "✔" }); // object data
+req.data("msg=Hello World!&name=Selena Gomez&simple_post=✔"); // string data
 // run the req
 req.run()
     .then(check_status)
@@ -300,17 +304,12 @@ req.run()
     });
 ```
 
-<a name="example-post"></a>
-**POST** &mdash; `POST` call.
+<a name="example-get"></a>
+**GET** &mdash; `GET` request.
 
 ```js
 // create a new http request
-var req = new http("test.php");
-// set wanted options
-req.method("POST");
-// req.data({ "msg": "Hello World!!", "name": "Selena Gomez" }); // object data
-req.data("msg=Hello World!&name=Selena Gomez"); // string data
-
+var req = new http("test.php?verified=✔&simple_get=✔");
 // run the req
 req.run()
     .then(check_status)
@@ -357,30 +356,23 @@ req.run()
 
 ```js
 document.getElementById("file").addEventListener("change", function(e) {
-
     // cache the input form, the parent in this case
     var form = this.parentNode;
-
-    // formdata resources...
     var form_data = new FormData(),
         files = this.files,
         file;
-
     // loop through files to add to FormData object
     for (var i = 0, l = files.length; i < l; i++) {
         file = files.item(i);
         form_data.append(this.getAttribute("name"), file, file.name);
     }
-
     // upload files to server
-
     // create a new http request
-    var req = new http("test.php?files=true");
+    var req = new http("test.php?files=✔");
     // set wanted options
     req.method("POST");
     req.data(form_data); // form data
     req.fileUpload(true);
-
     // run the req
     req.run()
         .then(check_status)
@@ -390,8 +382,8 @@ document.getElementById("file").addEventListener("change", function(e) {
         })
         .catch(function(xhr) {
             console.log("The XHR Error:", xhr);
+            form.reset(); // reset form
         });
-
 });
 ```
 
@@ -400,14 +392,16 @@ document.getElementById("file").addEventListener("change", function(e) {
 
 ```js
 // create a new http request
-var req = new http("test.php");
+var req = new http("test.php?json=✔");
 // set wanted options
 req.method("POST");
-// set flag to stringify data. will also set content-type header
-// to "application/json"
-req.postJSON(true);
-req.data({ "msg": "Hello World!!", "name": "Selena Gomez" }); // object data
-
+req.postJSON(true); // stringify via JSON.stringify
+req.header("content-type", "application/json");
+req.data({ // object data
+    "msg": "Hello World!!",
+    "name": "Selena Gomez"
+});
+req.processData(false);
 // run the req
 req.run()
     .then(check_status)
@@ -424,14 +418,13 @@ req.run()
 
 ```js
 // create a new http request
-var req = new http("test.php?verified=true");
+var req = new http("test.php?verified=✔&return_json=✔");
 // set wanted options
-req.parseJSON(true);
 // will try and parse the requests responseText
 // if successfully parsed the value will be set the
 // XHRs responseJSON property. the JSON can then be
 // accessed like so, var json = xhr.responseJSON;
-
+req.parseJSON(true);
 // run the req
 req.run()
     .then(check_status)

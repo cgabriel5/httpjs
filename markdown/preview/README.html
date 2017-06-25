@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>xhr-wrapper (http)</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/github-markdown.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css" />
+</head>
+
+<body>
+    <article class="markdown-body"><h1 id="xhr-wrapper-(http)">xhr-wrapper (http)</h1>
+<p>A lightweight JavaScript XHR wrapper.</p>
+<h5 id="table-of-contents">Table of Contents</h5>
+<p><a href="#what-it-does">What It Does</a><br><a href="#add-to-project">Add To Project</a><br><a href="#access-library">Access Library</a><br><a href="#instance-creation">Instance Creation</a><br><a href="#api">API</a>  </p>
+<ul class="list">
+<li><a href="#global-api">Global</a><ul class="list">
+<li><a href="#global-quicktable-reference">QuickTable</a>  </li>
+<li><a href="#global-methods-long">Methods</a>  </li>
+</ul>
+</li>
+<li><a href="#instance-api">Instance</a><ul class="list">
+<li><a href="#instance-quicktable-reference">QuickTable</a>  </li>
+<li><a href="#instance-methods-long">Methods</a> </li>
+</ul>
+</li>
+</ul>
+<p><a href="#usage">Usage</a>  </p>
+<ul class="list">
+<li><a href="#handling-http-errors">Handling HTTP Errors</a>  </li>
+<li><a href="#example-post">POST</a>  </li>
+<li><a href="#example-get">GET</a>  </li>
+<li><a href="#example-form-upload">Form Upload</a>  </li>
+<li><a href="#example-file-upload">File Upload</a>  </li>
+<li><a href="#example-post-json">Post JSON</a>  </li>
+<li><a href="#example-parse-json">Parse JSON</a>  </li>
+</ul>
+<p><a href="#contributing">Contributing</a><br><a href="#license">License</a>  </p>
+<p><a name="what-it-does"></a></p>
+<h3 id="what-it-does">What It Does</h3>
+<ul class="list">
+<li>Provides a wrapper for the XMLHttpRequest Object</li>
+<li>Uses JavaScript Promises</li>
+<li>Allows for cancelable XHR calls</li>
+</ul>
+<p><a name="add-to-project"></a></p>
+<h3 id="add-to-project">Add To Project</h3>
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"path/to/lib.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p><a name="access-library"></a></p>
+<h3 id="access-library">Access Library</h3>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> http = <span class="hljs-built_in">window</span>.app.libs.http;</code></pre><p><a name="instance-creation"></a></p>
+<h3 id="instance-creation">Instance Creation</h3>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http();
+
+<span class="hljs-comment">// Using the "new" keyword is not necessary. If not used</span>
+<span class="hljs-comment">// the library will make sure to use it for you.</span>
+<span class="hljs-keyword">var</span> req = http();
+
+<span class="hljs-comment">// **Note: URL can also be provided upon instance creation.</span>
+<span class="hljs-comment">// If not provided it must be provided later with the</span>
+<span class="hljs-comment">// http.url() method.</span>
+<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><p><a name="api"></a></p>
+<h3 id="api">API</h3>
+<p><a name="global-api"></a></p>
+<h3 id="api-&mdash;-global">API &mdash; Global</h3>
+<p><a name="global-quicktable-reference"></a></p>
+<h3 id="global-quicktable-reference">Global QuickTable Reference</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>abortAll</strong></td>
+<td>Aborts all pending requests</td>
+</tr>
+</tbody>
+</table>
+<p><a name="global-methods-long"></a></p>
+<h3 id="global-methods">Global Methods</h3>
+<p><strong>http.abortAll</strong> &mdash; Aborts all pending requests.</p>
+<pre class="hljs"><code>http.abortAll();</code></pre><p><a name="instance-api"></a></p>
+<h3 id="api-&mdash;-instance">API &mdash; Instance</h3>
+<p><a name="instance-quicktable-reference"></a></p>
+<h3 id="instance-quicktable-reference">Instance QuickTable Reference</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>url</strong></td>
+<td>Sets request URL</td>
+</tr>
+<tr>
+<td><strong>data</strong></td>
+<td>Sets request data</td>
+</tr>
+<tr>
+<td><strong>method</strong></td>
+<td>Sets request method</td>
+</tr>
+<tr>
+<td><strong>fileUpload</strong></td>
+<td>Sets fileUpload flag indicating whether files are being uploaded</td>
+</tr>
+<tr>
+<td><strong>processData</strong></td>
+<td>Sets processData flag indicating whether the passed data should be processed</td>
+</tr>
+<tr>
+<td><strong>postJSON</strong></td>
+<td>Sets postJSON flag indicating whether the data should be stringified</td>
+</tr>
+<tr>
+<td><strong>parseJSON</strong></td>
+<td>Sets parseJSON flag indicating whether the responded data should be parse with JSON.parse()</td>
+</tr>
+<tr>
+<td><strong>withCredentials</strong></td>
+<td>Sets withCredentials flag indicating whether CORS needs to be used</td>
+</tr>
+<tr>
+<td><strong>cache</strong></td>
+<td>Sets cache flag indicating whether cache the request</td>
+</tr>
+<tr>
+<td><strong>async</strong></td>
+<td>Sets async flag indicating whether request will be async or not</td>
+</tr>
+<tr>
+<td><strong>header</strong></td>
+<td>Sets a request header</td>
+</tr>
+<tr>
+<td><strong>id</strong></td>
+<td>Sets request ID</td>
+</tr>
+<tr>
+<td><strong>responseType</strong></td>
+<td>Sets request responseType</td>
+</tr>
+<tr>
+<td><strong>timeout</strong></td>
+<td>Sets request timeout time</td>
+</tr>
+<tr>
+<td><strong>events</strong></td>
+<td>Sets request events</td>
+</tr>
+<tr>
+<td><strong>run</strong></td>
+<td>Runs the request</td>
+</tr>
+<tr>
+<td><strong>getProp</strong></td>
+<td>Gets http object property</td>
+</tr>
+<tr>
+<td><strong>abort</strong></td>
+<td>Aborts request</td>
+</tr>
+</tbody>
+</table>
+<p><a name="instance-methods-long"></a></p>
+<h3 id="instance-methods">Instance Methods</h3>
+<p><strong>http.url</strong> &mdash; Sets request URL.</p>
+<pre class="hljs"><code>http.url(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><p><strong>http.data</strong> &mdash; Sets request data.</p>
+<pre class="hljs"><code><span class="hljs-comment">// string data</span>
+req.data(<span class="hljs-string">"msg=Hello World!&amp;name=Selena Gomez"</span>);
+<span class="hljs-comment">// object data</span>
+req.data({ <span class="hljs-string">"msg"</span>: <span class="hljs-string">"Hello World!!"</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">"Selena Gomez"</span> });
+<span class="hljs-comment">// form data</span>
+req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p><strong>http.method</strong> &mdash; Sets request method.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to "GET" if no method is set.</span>
+req.method(<span class="hljs-string">"GET|POST|PUT|DELETE|HEAD|OPTIONS"</span>);</code></pre><p><strong>http.fileUpload</strong> &mdash; Sets fileUpload flag indicating whether files are being uploaded.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to false (not a file upload)</span>
+req.fileUpload(<span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>);</code></pre><p><strong>http.processData</strong> &mdash; Sets processData flag indicating whether the passed data should be processed.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to true, causing strings and objects to be processed.</span>
+<span class="hljs-comment">// Set to false if your data does not need processing.</span>
+req.processData(<span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>);</code></pre><p><strong>http.postJSON</strong> &mdash; Sets postJSON flag indicating whether the data should be stringified.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to false. Setting flag to true will also set the content type</span>
+<span class="hljs-comment">// header to "application/json".</span>
+req.postJSON(<span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>);</code></pre><p><strong>http.parseJSON</strong> &mdash; Sets parseJSON flag indicating whether the responded data should be parse with JSON.parse().</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to false. Setting flag to true will parse the returned data and</span>
+<span class="hljs-comment">// set the requests responseJSON (synthetic) property to the parse JSON result.</span>
+req.parseJSON(<span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>);</code></pre><p><strong>http.withCredentials</strong> &mdash; Sets withCredentials flag indicating whether CORS needs to be used.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to false.</span>
+req.withCredentials(<span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>);</code></pre><p><strong>http.cache</strong> &mdash; Sets cache flag indicating whether cache the request.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to false</span>
+req.cache(<span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>);</code></pre><p><strong>http.async</strong> &mdash; Sets async flag indicating whether request will be async or not.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to true</span>
+req.async(<span class="hljs-literal">true</span>|<span class="hljs-literal">false</span>);</code></pre><p><strong>http.header</strong> &mdash; Sets a request header.</p>
+<pre class="hljs"><code><span class="hljs-comment">// If not provided the only header set is the Content-Type header. It's</span>
+<span class="hljs-comment">// set with a value of "application/x-www-form-urlencoded;charset=UTF-8"</span>
+<span class="hljs-comment">// The content type header is left out for file uploads to let browser </span>
+<span class="hljs-comment">// determine correct contentType + boundaries.</span>
+req.header(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/x-www-form-urlencoded;charset=UTF-8"</span>);</code></pre><p><strong>http.id</strong> &mdash; Sets request ID.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to randomly generated ID.</span>
+<span class="hljs-comment">// The ID is used to track the request to abort later if needed.</span>
+<span class="hljs-comment">// **Note: If you are provided an ID it needs to be unique.</span>
+req.id(<span class="hljs-string">"unique-id"</span>);</code></pre><p><strong>http.responseType</strong> &mdash; Sets request responseType.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to ""</span>
+req.responseType(<span class="hljs-string">"json"</span>);</code></pre><p><strong>http.timeout</strong> &mdash; Sets request timeout time.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to 10000 (10 seconds)</span>
+req.timeout(<span class="hljs-number">5000</span>);</code></pre><p><strong>http.events</strong> &mdash; Sets request events.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Defaults to empty events object (no events)</span>
+req.events({
+    <span class="hljs-string">"abort"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">/* logic... */</span> },
+    <span class="hljs-string">"timeout"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">/* logic... */</span> },
+    <span class="hljs-string">"progress"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">/* logic... */</span> }
+    <span class="hljs-string">"loadstart"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">/* logic... */</span> }
+    <span class="hljs-string">"loadend"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">/* logic... */</span> }
+    <span class="hljs-string">"readystatechange"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-comment">/* logic... */</span> }
+    <span class="hljs-comment">// load and error handle via Promise then/catch</span>
+    <span class="hljs-comment">// however, supplying the events will still fire them</span>
+    <span class="hljs-comment">// "load": function() { /* logic... */ }</span>
+    <span class="hljs-comment">// "error": function() { /* logic... */ }</span>
+});</code></pre><p><strong>http.run</strong> &mdash; Runs the request.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Once the request is run the object is locked. This means</span>
+<span class="hljs-comment">// the object can no longer be modified with instance methods.</span>
+<span class="hljs-comment">// A Promise is returned.</span>
+req.run();</code></pre><p><strong>http.getProp</strong> &mdash; Gets http object property.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Returns the http instances property.</span>
+<span class="hljs-comment">// Possible properties to retrieve include:</span>
+<span class="hljs-comment">// id|callbacks|aborted|locked|opened|resolved|rejected|path</span>
+req.getProp(<span class="hljs-string">"id"</span>); <span class="hljs-comment">// returns http instance ID</span></code></pre><p><strong>http.abort</strong> &mdash; Aborts request.</p>
+<pre class="hljs"><code><span class="hljs-comment">// Aborts http request.</span>
+req.abort();</code></pre><p><a name="usage"></a></p>
+<h3 id="usage">Usage</h3>
+<p><a name="handling-http-errors"></a>
+<strong>Handling HTTP Errors</strong> &mdash; A custom function is needed to handle HTTP errors.</p>
+<pre class="hljs"><code><span class="hljs-comment">// custom function to check status of request</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">check_status</span>(<span class="hljs-params">xhr</span>) </span>{
+    <span class="hljs-keyword">if</span> ((xhr.status &gt;= <span class="hljs-number">200</span> &amp;&amp; xhr.status &lt; <span class="hljs-number">300</span>) &amp;&amp; xhr.readyState === <span class="hljs-number">4</span>) <span class="hljs-keyword">return</span> xhr; <span class="hljs-comment">// no HTTP error</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(xhr);
+}</code></pre><p><a name="example-post"></a>
+<strong>POST</strong> &mdash; <code>POST</code> call.</p>
+<pre class="hljs"><code><span class="hljs-comment">// create a new http request</span>
+<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"test.php"</span>);
+<span class="hljs-comment">// set wanted options</span>
+req.method(<span class="hljs-string">"POST"</span>);
+<span class="hljs-comment">// data as a string or within an object maybe passed</span>
+<span class="hljs-comment">// req.data({ "msg": "Hello World!!", "name": "Selena Gomez", "simple_post": "✔" }); // object data</span>
+req.data(<span class="hljs-string">"msg=Hello World!&amp;name=Selena Gomez&amp;simple_post=✔"</span>); <span class="hljs-comment">// string data</span>
+<span class="hljs-comment">// run the req</span>
+req.run()
+    .then(check_status)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The Server Response:"</span>, xhr);
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The XHR Error:"</span>, xhr);
+    });</code></pre><p><a name="example-get"></a>
+<strong>GET</strong> &mdash; <code>GET</code> request.</p>
+<pre class="hljs"><code><span class="hljs-comment">// create a new http request</span>
+<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"test.php?verified=✔&amp;simple_get=✔"</span>);
+<span class="hljs-comment">// run the req</span>
+req.run()
+    .then(check_status)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The Server Response:"</span>, xhr);
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The XHR Error:"</span>, xhr);
+    });</code></pre><p><a name="example-form-upload"></a>
+<strong>Form Upload</strong> &mdash; <code>HTML</code> form upload to <code>PHP</code> script.</p>
+<pre class="hljs"><code><span class="hljs-comment">// get form element from DOM</span>
+<span class="hljs-keyword">var</span> form = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"form"</span>);
+
+<span class="hljs-comment">// create a new http request</span>
+<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"formsubmit.php"</span>);
+<span class="hljs-comment">// set wanted options</span>
+req.method(<span class="hljs-string">"POST"</span>);
+req.data(<span class="hljs-keyword">new</span> FormData(form)); <span class="hljs-comment">// form data</span>
+
+<span class="hljs-comment">// run the req</span>
+req.run()
+    .then(check_status)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The Server Response:"</span>, xhr);
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The XHR Error:"</span>, xhr);
+    });</code></pre><p><a name="example-file-upload"></a>
+<strong>File Upload</strong> &mdash; Multiple file upload to <code>PHP</code> script.</p>
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"form"</span> <span class="hljs-attr">enctype</span>=<span class="hljs-string">"multipart/form-data"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"images[]"</span> <span class="hljs-attr">multiple</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre><pre class="hljs"><code><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"file"</span>).addEventListener(<span class="hljs-string">"change"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+    <span class="hljs-comment">// cache the input form, the parent in this case</span>
+    <span class="hljs-keyword">var</span> form = <span class="hljs-keyword">this</span>.parentNode;
+    <span class="hljs-keyword">var</span> form_data = <span class="hljs-keyword">new</span> FormData(),
+        files = <span class="hljs-keyword">this</span>.files,
+        file;
+    <span class="hljs-comment">// loop through files to add to FormData object</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, l = files.length; i &lt; l; i++) {
+        file = files.item(i);
+        form_data.append(<span class="hljs-keyword">this</span>.getAttribute(<span class="hljs-string">"name"</span>), file, file.name);
+    }
+    <span class="hljs-comment">// upload files to server</span>
+    <span class="hljs-comment">// create a new http request</span>
+    <span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"test.php?files=✔"</span>);
+    <span class="hljs-comment">// set wanted options</span>
+    req.method(<span class="hljs-string">"POST"</span>);
+    req.data(form_data); <span class="hljs-comment">// form data</span>
+    req.fileUpload(<span class="hljs-literal">true</span>);
+    <span class="hljs-comment">// run the req</span>
+    req.run()
+        .then(check_status)
+        .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The Server Response:"</span>, xhr);
+            form.reset(); <span class="hljs-comment">// reset form</span>
+        })
+        .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The XHR Error:"</span>, xhr);
+            form.reset(); <span class="hljs-comment">// reset form</span>
+        });
+});</code></pre><p><a name="example-post-json"></a>
+<strong>Post JSON</strong> &mdash; Set postJSON flag to stringify data.</p>
+<pre class="hljs"><code><span class="hljs-comment">// create a new http request</span>
+<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"test.php?json=✔"</span>);
+<span class="hljs-comment">// set wanted options</span>
+req.method(<span class="hljs-string">"POST"</span>);
+req.postJSON(<span class="hljs-literal">true</span>); <span class="hljs-comment">// stringify via JSON.stringify</span>
+req.header(<span class="hljs-string">"content-type"</span>, <span class="hljs-string">"application/json"</span>);
+req.data({ <span class="hljs-comment">// object data</span>
+    <span class="hljs-string">"msg"</span>: <span class="hljs-string">"Hello World!!"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"Selena Gomez"</span>
+});
+req.processData(<span class="hljs-literal">false</span>);
+<span class="hljs-comment">// run the req</span>
+req.run()
+    .then(check_status)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The Server Response:"</span>, xhr);
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The XHR Error:"</span>, xhr);
+    });</code></pre><p><a name="example-parse-json"></a>
+<strong>Parse JSON</strong> &mdash; Set parseJSON flag to parse returned data.</p>
+<pre class="hljs"><code><span class="hljs-comment">// create a new http request</span>
+<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"test.php?verified=✔&amp;return_json=✔"</span>);
+<span class="hljs-comment">// set wanted options</span>
+<span class="hljs-comment">// will try and parse the requests responseText</span>
+<span class="hljs-comment">// if successfully parsed the value will be set the</span>
+<span class="hljs-comment">// XHRs responseJSON property. the JSON can then be</span>
+<span class="hljs-comment">// accessed like so, var json = xhr.responseJSON;</span>
+req.parseJSON(<span class="hljs-literal">true</span>);
+<span class="hljs-comment">// run the req</span>
+req.run()
+    .then(check_status)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The Server Response:"</span>, xhr);
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The XHR Error:"</span>, xhr);
+    });</code></pre><p><a name="contributing"></a></p>
+<h3 id="contributing">Contributing</h3>
+<p>Contributions are welcome! Found a bug, feel like documentation is lacking/confusing and needs an update, have performance/feature suggestions or simply found a typo? Let me know! :)</p>
+<p>See how to contribute <a href="https://github.com/cgabriel5/http/blob/master/CONTRIBUTING.md">here</a>.</p>
+<p><a name="license"></a></p>
+<h3 id="license">License</h3>
+<p>This project uses the <a href="https://github.com/cgabriel5/http/blob/master/LICENSE.txt">MIT License</a>.</p>
+    </article>
+</body>
+
+</html>
