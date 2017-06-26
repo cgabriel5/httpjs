@@ -152,9 +152,7 @@ gulp.task("purify", function(done) {
 });
 // build app.js + minify + beautify
 gulp.task("jsapp", function(done) {
-    // check if application is a library
-    var is_library = __type__ === "library";
-    pump([gulp.src(paths.flavor.jsapp[__type__], {
+    pump([gulp.src(paths.flavor.jsapp, {
             cwd: "js/source/"
         }),
         concat("app.js"),
@@ -171,7 +169,7 @@ gulp.task("jslibsource", function(done) {
     var is_library = __type__ === "library";
     if (!is_library) return done(); // return on apps of type "webapp"
     // remove test files from files
-    var files_array = paths.flavor.jsapp[__type__].filter(function(filename) {
+    var files_array = paths.flavor.jsapp.filter(function(filename) {
         return !(/^test/i)
             .test(filename);
     });
@@ -190,7 +188,7 @@ gulp.task("jslibsource", function(done) {
 });
 // build libs.js + minify + beautify
 gulp.task("jslibs", function(done) {
-    pump([gulp.src(paths.flavor.jslibs[__type__], {
+    pump([gulp.src(paths.flavor.jslibs, {
             cwd: "js/libs/"
         }),
         concat("libs.js"),
