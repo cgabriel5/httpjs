@@ -16,6 +16,7 @@
 <h5 id="table-of-contents">Table of Contents</h5>
 <p><a href="#what-it-does">What It Does</a><br><a href="#add-to-project">Add To Project</a><br><a href="#access-library">Access Library</a><br><a href="#instance-creation">Instance Creation</a><br><a href="#api">API</a>  </p>
 <ul class="list">
+<li><a href="#signature-api">Signature</a>  </li>
 <li><a href="#global-api">Global</a><ul class="list">
 <li><a href="#global-quicktable-reference">QuickTable</a>  </li>
 <li><a href="#global-methods-long">Methods</a>  </li>
@@ -62,7 +63,14 @@
 <span class="hljs-comment">// http.url() method.</span>
 <span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><p><a name="api"></a></p>
 <h3 id="api">API</h3>
-<p><a name="global-api"></a></p>
+<p><a name="signature-api"></a></p>
+<h3 id="api-&mdash;-signature">API &mdash; Signature</h3>
+<pre class="hljs"><code><span class="hljs-comment">/**
+ * @param  {String: Optional} [The resource URL. It can be provided on
+ *                             instance creation or can be provided later via
+ *                             the url() method.]
+ * @return {Object}           [The new inactive http instance.]
+ */</span></code></pre><p><a name="global-api"></a></p>
 <h3 id="api-&mdash;-global">API &mdash; Global</h3>
 <p><a name="global-quicktable-reference"></a></p>
 <h3 id="global-quicktable-reference">Global QuickTable Reference</h3>

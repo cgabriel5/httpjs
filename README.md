@@ -9,6 +9,7 @@ A lightweight JavaScript XHR wrapper.
 [Access Library](#access-library)  
 [Instance Creation](#instance-creation)  
 [API](#api)  
+* [Signature](#signature-api)  
 * [Global](#global-api)
     * [QuickTable](#global-quicktable-reference)  
     * [Methods](#global-methods-long)  
@@ -67,6 +68,18 @@ var req = new http("posts.php?foo=bar");
 
 <a name="api"></a>
 ### API
+
+<a name="signature-api"></a>
+### API &mdash; Signature
+
+```js
+/**
+ * @param  {String: Optional} [The resource URL. It can be provided on
+ *                             instance creation or can be provided later via
+ *                             the url() method.]
+ * @return {Object}           [The new inactive http instance.]
+ */
+```
 
 <a name="global-api"></a>
 ### API &mdash; Global
