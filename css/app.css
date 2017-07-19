@@ -82,7 +82,6 @@ figure {
 */
 
 hr {
-    -webkit-box-sizing: content-box;
     box-sizing: content-box;
     /* 1 */
     height: 0;
@@ -351,7 +350,6 @@ button:-moz-focusring,
 */
 
 legend {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* 1 */
     color: inherit;
@@ -396,7 +394,6 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* 1 */
     padding: 0;
@@ -522,7 +519,6 @@ template {
 ::after {
     background-repeat: no-repeat;
     /* 1 */
-    -webkit-box-sizing: inherit;
     box-sizing: inherit;
     /* 2 */
 }
@@ -548,7 +544,6 @@ template {
  */
 
 html {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* 1 */
     cursor: default;
