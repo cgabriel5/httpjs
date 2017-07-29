@@ -4,6 +4,7 @@ A lightweight JavaScript XHR wrapper.
 
 ##### Table of Contents
 
+- [Project Setup](#project-setup)
 - [What It Does](#what-it-does)
 - [Add To Project](#add-to-project)
 - [Access Library](#access-library)
@@ -27,15 +28,22 @@ A lightweight JavaScript XHR wrapper.
 - [Contributing](#contributing)
 - [License](#license)
 
+<a name="project-setup"></a>
+### Project Setup
+
+Project uses [this](https://github.com/cgabriel5/snippets/tree/master/boilerplate/application) boilerplate. Its [README.md](https://github.com/cgabriel5/snippets/blob/master/boilerplate/application/README.md#-read-before-use) contains instructions for `Yarn` and `Gulp`.
+
 <a name="what-it-does"></a>
 ### What It Does
 
-* Provides a wrapper for the XMLHttpRequest Object
-* Uses JavaScript Promises
-* Allows for cancelable XHR calls
+* Provides a wrapper for the `XMLHttpRequest` Object.
+* Uses JavaScript Promises.
+* Allows for cancelable XHR calls.
 
 <a name="add-to-project"></a>
 ### Add To Project
+
+**Note**: The library, both minimized and unminimized, is located in `lib/`.
 
 ```html
 <script src="path/to/lib.js"></script>
@@ -48,231 +56,301 @@ A lightweight JavaScript XHR wrapper.
 var http = window.app.libs.http;
 ```
 
-<a name="instance-creation"></a>
-### Instance Creation
-
-```js
-var req = new http();
-
-// Using the "new" keyword is not necessary. If not used
-// the library will make sure to use it for you.
-var req = http();
-
-// **Note: URL can also be provided upon instance creation.
-// If not provided it must be provided later with the
-// http.url() method.
-var req = new http("posts.php?foo=bar");
-```
-
 <a name="api"></a>
-### API
-
-<a name="signature-api"></a>
-### API &mdash; Signature
-
-```js
-/**
- * @param  {String: Optional} [The resource URL. It can be provided on
- *                             instance creation or can be provided later via
- *                             the url() method.]
- * @return {Object}           [The new inactive http instance.]
- */
-```
+## API
 
 <a name="global-api"></a>
-### API &mdash; Global
+### Global
 
 <a name="global-quicktable-reference"></a>
 ### Global QuickTable Reference
 
 Method | Function
 ------------ | -------------
-**abortAll** | Aborts all pending requests
+`abortAll` | Aborts all pending requests.
 
 <a name="global-methods-long"></a>
 ### Global Methods
 
-**http.abortAll** &mdash; Aborts all pending requests.
+► **instance.abortAll** &mdash; Aborts all pending requests.
+
+- **No Parameters**
 
 ```js
 http.abortAll();
 ```
 
 <a name="instance-api"></a>
-### API &mdash; Instance
+### Instance
 
+<a name="signature-api"></a>
+### Instance Signature
+
+```js
+/**
+ * @param  {String: Optional} [The resource URL. It can be provided on
+ *                             instance creation or can be provided later via
+ *                             instance.url.]
+ * @return {Object}           [The new inactive http instance.]
+ */
+```
+
+<a name="instance-creation"></a>
+### Instance Creation
+
+**Note**: Using the `new` keyword is not necessary. The library will make sure to use it for when when you don't. 
+
+```js
+// this...
+var req = new http();
+// is the same as this
+var req = http();
+```
+
+**Note**: The `URL` can also be provided upon instance creation. If not provided it must be provided later via `instance.url()`.
+
+```js
+var req = new http("posts.php?foo=bar");
+```
+<!-- 
 <a name="instance-quicktable-reference"></a>
 ### Instance QuickTable Reference
 
 Method | Function
 ------------ | -------------
-**url** | Sets request URL
-**data** | Sets request data
-**method** | Sets request method
-**fileUpload** | Sets fileUpload flag indicating whether files are being uploaded
-**processData** | Sets processData flag indicating whether the passed data should be processed
-**postJSON** | Sets postJSON flag indicating whether the data should be stringified
-**parseJSON** | Sets parseJSON flag indicating whether the responded data should be parse with JSON.parse()
-**withCredentials** | Sets withCredentials flag indicating whether CORS needs to be used
-**cache** |  Sets cache flag indicating whether cache the request
-**async** | Sets async flag indicating whether request will be async or not
-**header** |  Sets a request header
-**id** | Sets request ID
-**responseType** | Sets request responseType
-**timeout** | Sets request timeout time
-**events** | Sets request events
-**run** | Runs the request
-**getProp** | Gets http object property
-**abort** | Aborts request
+`url` | Sets the request URL.
+`data` | Sets the request data.
+`method` | Sets the request method.
+`fileUpload` | Sets the `fileUpload` flag indicating whether files are being uploaded.
+`processData` | Sets the `processData` flag indicating whether the passed data should be processed.
+`postJSON` | Sets the `postJSON` flag indicating whether the data should be stringified.
+`parseJSON` | Sets the `parseJSON` flag indicating whether the responded data should be parsed with `JSON.parse`.
+`withCredentials` | Sets the `withCredentials` flag indicating whether `CORS` needs to be used.
+`cache` |  Sets the `cache` flag indicating whether cache the request.
+`async` | Sets the `async` flag indicating whether request will be async or not.
+`header` |  Sets the a request header.
+`id` | Sets the request ID.
+`responseType` | Sets the request responseType.
+`timeout` | Sets the request timeout time.
+`events` | Sets the request events.
+`run` | Runs the request.
+`getProp` | Gets an http object property.
+`abort` | Aborts request. -->
 
 <a name="instance-methods-long"></a>
 ### Instance Methods
 
-**http.url** &mdash; Sets request URL.
+► **instance.url(`URL`)** &mdash; Sets the request URL.
+
+- `URL` (`String`, _Required_, Default: `""`)
+- **Returns** instance.
 
 ```js
-http.url("posts.php?foo=bar");
+req.url("posts.php?foo=bar");
 ```
 
-**http.data** &mdash; Sets request data.
+► **instance.data(`data`)** &mdash; Sets the request data.
+
+- `data` (`String|Object|FormData`, _Optional_, Default: `null`)
+- **Returns** instance.
 
 ```js
-// string data
+// String Data
 req.data("msg=Hello World!&name=Selena Gomez");
-// object data
+
+// Object Data
 req.data({ "msg": "Hello World!!", "name": "Selena Gomez" });
-// form data
+
+// FormData
 req.data(new FormData());
 ```
 
-**http.method** &mdash; Sets request method.
+► **instance.method(`type`)** &mdash; Sets the request method.
+
+- `type` (`String`, _Optional_, Default: `"GET"`)
+    - Case insensitive.
+    - Possible values: `"GET"`, `"POST"`, `"PUT"`, `"DELETE"`, `"HEAD"`, `"OPTIONS"`
+- **Returns** instance.
 
 ```js
-// Defaults to "GET" if no method is set.
-req.method("GET|POST|PUT|DELETE|HEAD|OPTIONS");
+req.method("POST");
 ```
 
-**http.fileUpload** &mdash; Sets fileUpload flag indicating whether files are being uploaded.
+► **instance.fileUpload(`flag`)** &mdash; Sets the `fileUpload` flag indicating whether files are being uploaded.
+
+- `flag` (`Boolean`, _Optional_, Default: `false`)
+    - Possible values: `true`, `false`
+- **Returns** instance.
 
 ```js
-// Defaults to false (not a file upload)
-req.fileUpload(true|false);
+req.fileUpload(true);
 ```
 
-**http.processData** &mdash; Sets processData flag indicating whether the passed data should be processed.
+► **instance.processData(`flag`)** &mdash; Sets the `processData` flag indicating whether the passed data should be processed.
+
+- `flag` (`Boolean`, _Optional_, Default: `true`)
+    - Possible values: `true`, `false`
+- **Returns** instance.
+
+**Note**: Setting flag to true will process strings and objects.
 
 ```js
-// Defaults to true, causing strings and objects to be processed.
-// Set to false if your data does not need processing.
-req.processData(true|false);
+req.processData(true);
 ```
 
-**http.postJSON** &mdash; Sets postJSON flag indicating whether the data should be stringified.
+► **instance.postJSON(`flag`)** &mdash; Sets the `postJSON` flag indicating whether the data should be stringified.
+
+- `flag` (`Boolean`, _Optional_, Default: `false`)
+    - Possible values: `true`, `false`
+- **Returns** instance.
 
 ```js
-// Defaults to false. Setting flag to true will also set the content type
-// header to "application/json".
-req.postJSON(true|false);
+req.postJSON(true);
 ```
 
-**http.parseJSON** &mdash; Sets parseJSON flag indicating whether the responded data should be parse with JSON.parse().
+► **instance.parseJSON** &mdash; Sets the `parseJSON` flag indicating whether the responded data should be parse with `JSON.parse`.
+
+- `flag` (`Boolean`, _Optional_, Default: `false`)
+    - Possible values: `true`, `false`
+- **Returns** instance.
 
 ```js
-// Defaults to false. Setting flag to true will parse the returned data and
-// set the requests responseJSON (synthetic) property to the parse JSON result.
-req.parseJSON(true|false);
+// Setting flag to true will parse the returned data and set the requests 
+// responseJSON (synthetic) property to the parse JSON result.
+req.parseJSON(true);
 ```
 
-**http.withCredentials** &mdash; Sets withCredentials flag indicating whether CORS needs to be used.
+► **instance.withCredentials(`flag`)** &mdash; Sets the withCredentials flag indicating whether CORS needs to be used.
+
+- `flag` (`Boolean`, _Optional_, Default: `false`)
+    - Possible values: `true`, `false`
+- **Returns** instance.
 
 ```js
-// Defaults to false.
-req.withCredentials(true|false);
+req.withCredentials(false);
 ```
 
-**http.cache** &mdash; Sets cache flag indicating whether cache the request.
+► **instance.cache(`flag`)** &mdash; Sets the cache flag indicating whether cache the request.
+
+- `flag` (`Boolean`, _Optional_, Default: `false`)
+    - Possible values: `true`, `false`
+- **Returns** instance.
 
 ```js
-// Defaults to false
-req.cache(true|false);
+req.cache(false);
 ```
 
-**http.async** &mdash; Sets async flag indicating whether request will be async or not.
+► **instance.async(`flag`)** &mdash; Sets the async flag indicating whether request will be async or not.
+
+- `flag` (`Boolean`, _Optional_, Default: `true`)
+    - Possible values: `true`, `false`
+- **Returns** instance.
 
 ```js
-// Defaults to true
-req.async(true|false);
+req.async(true);
 ```
 
-**http.header** &mdash; Sets a request header.
+► **instance.header(`headerName`, `headerValue`)** &mdash; Sets the a request header.
+
+- `headerName` (`String`, _Required_)
+- `headerValue` (`String`, _Required_)
+- **Returns** instance.
+
+**Note**: If not provided the only header set is the `Content-Type` header. It's set with a value of `"application/x-www-form-urlencoded;charset=UTF-8"`. The content type header is left out for file uploads to let browser determine correct `contentType` and `boundaries`.
 
 ```js
-// If not provided the only header set is the Content-Type header. It's
-// set with a value of "application/x-www-form-urlencoded;charset=UTF-8"
-// The content type header is left out for file uploads to let browser 
-// determine correct contentType + boundaries.
 req.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 ```
 
-**http.id** &mdash; Sets request ID.
+► **instance.id(`id`)** &mdash; Sets the request ID.
+
+- `id` (`String`, _Required_)
+    - Defaults to an internally randomly generated `id` when not explicitly set via `instance.id`.
+    - `id` is used to track the request to abort if needed.
+    - **Note**: `id` must be unique.
+- **Returns** instance.
 
 ```js
-// Defaults to randomly generated ID.
-// The ID is used to track the request to abort later if needed.
-// **Note: If you are provided an ID it needs to be unique.
-req.id("unique-id");
+req.id("some-unique-string-id");
 ```
-**http.responseType** &mdash; Sets request responseType.
+
+► **instance.responseType(`type`)** &mdash; Sets the request responseType.
+
+- `type` (`String`, _Required_, Default: `""`)
+- **Returns** instance.
 
 ```js
-// Defaults to ""
 req.responseType("json");
 ```
 
-**http.timeout** &mdash; Sets request timeout time.
+► **instance.timeout(`time`)** &mdash; Sets the request timeout time.
+
+- `time` (`Number`, _Required_, Default: `10000`)
+- **Returns** instance.
 
 ```js
-// Defaults to 10000 (10 seconds)
-req.timeout(5000);
+req.timeout(5000); // 5 seconds
 ```
 
-**http.events** &mdash; Sets request events.
+► **instance.events(`events`)** &mdash; Sets the request events.
+
+- `id` (`Object`, _Required_, Default: `{}`)
+    - Defaults to empty events object (no events).
+    - Supported events: `abort`, `timeout`, `progress`, `loadstart`, `loadend`, `readystatechange`, `load`, `error`
+- **Returns** instance.
 
 ```js
-// Defaults to empty events object (no events)
 req.events({
-    "abort": function() { /* logic... */ },
-    "timeout": function() { /* logic... */ },
-    "progress": function() { /* logic... */ }
-    "loadstart": function() { /* logic... */ }
-    "loadend": function() { /* logic... */ }
-    "readystatechange": function() { /* logic... */ }
+    "abort": function(event) { /* logic... */ },
+    "timeout": function(event) { /* logic... */ },
+    "progress": function(event) { /* logic... */ },
+    "loadstart": function(event) { /* logic... */ },
+    "loadend": function(event) { /* logic... */ },
+    "readystatechange": function(event) { /* logic... */ }
+
     // load and error handle via Promise then/catch
     // however, supplying the events will still fire them
-    // "load": function() { /* logic... */ }
-    // "error": function() { /* logic... */ }
+    // "load": function(event) { /* logic... */ }
+    // "error": function(event) { /* logic... */ }
 });
 ```
 
-**http.run** &mdash; Runs the request.
+► **instance.run** &mdash; Runs the request.
+
+- **No Parameters**
+- **Returns** a `promise`.
+
+**Note**: Once the request is run the object is locked. This means the object can no longer be modified via instance methods.
 
 ```js
-// Once the request is run the object is locked. This means
-// the object can no longer be modified with instance methods.
-// A Promise is returned.
 req.run();
 ```
 
-**http.getProp** &mdash; Gets http object property.
+► **instance.getProp** &mdash; Gets an http object property.
+
+- `id` (`String`, _Required_)
+    - Supported gettable properties:
+        - `id`: The `id` of the request.
+        - `callbacks`: Object containing all the provided callbacks.
+        - `aborted`: Boolean representing whether the request was aborted or not.
+        - `locked`: Boolean representing whether the request instance has locked. Gets locked after running the request via `instance.run`.
+        - `opened`: Boolean representing whether the request has been opened.
+        - `resolved`: Boolean representing whether the request has been resolved.
+        - `rejected`: Boolean representing whether the request has been rejected.
+        - `path`: String representing the path the request has taken.
+            - example path: `"created;unsent;headers-received;loading;finished;done;resolved"`
+            - path shows, among other things, that the request was created and finally resolved.
+- **Returns** the http instance property's value.
 
 ```js
-// Returns the http instances property.
-// Possible properties to retrieve include:
-// id|callbacks|aborted|locked|opened|resolved|rejected|path
-req.getProp("id"); // returns http instance ID
+req.getProp("id"); // returns the http's instance id
+req.getProp("aborted"); // returns Boolean representing whether the request was aborted or not
 ```
 
-**http.abort** &mdash; Aborts request.
+► **instance.abort** &mdash; Aborts request.
+
+- **No Parameters**
+- **Returns** Nothing.
 
 ```js
 // Aborts http request.
