@@ -115,24 +115,24 @@ var req = new http("posts.php?foo=bar");
 <a name="instance-methods-list"></a>
 ### Instance Methods List
 
-- [instance.url()](#instance-methods-url)
-- [instance.data()](#instance-methods-data)
-- [instance.method()](#instance-methods-method)
-- [instance.fileUpload()](#instance-methods-fileupload)
-- [instance.processData()](#instance-methods-processdata)
-- [instance.postJSON()](#instance-methods-postjson)
-- [instance.parseJSON()](#instance-methods-parsejson)
-- [instance.withCredentials()](#instance-methods-withcredentials)
-- [instance.cache()](#instance-methods-cache)
-- [instance.async()](#instance-methods-async)
-- [instance.header()](#instance-methods-header)
-- [instance.id()](#instance-methods-id)
-- [instance.responseType()](#instance-methods-responsetype)
-- [instance.timeout()](#instance-methods-timeout)
-- [instance.events()](#instance-methods-events)
-- [instance.run()](#instance-methods-run)
-- [instance.getProp()](#instance-methods-getprop)
-- [instance.abort()](#instance-methods-abort)
+- [instance.url( url )](#instance-methods-url)
+- [instance.data( data )](#instance-methods-data)
+- [instance.method( type )](#instance-methods-method)
+- [instance.fileUpload( flag )](#instance-methods-fileupload)
+- [instance.processData( flag )](#instance-methods-processdata)
+- [instance.postJSON( flag )](#instance-methods-postjson)
+- [instance.parseJSON( flag )](#instance-methods-parsejson)
+- [instance.withCredentials( flag )](#instance-methods-withcredentials)
+- [instance.cache( flag )](#instance-methods-cache)
+- [instance.async( flag )](#instance-methods-async)
+- [instance.header( headerName , headerValue )](#instance-methods-header)
+- [instance.id( id )](#instance-methods-id)
+- [instance.responseType( type )](#instance-methods-responsetype)
+- [instance.timeout( time )](#instance-methods-timeout)
+- [instance.events( events )](#instance-methods-events)
+- [instance.run() ](#instance-methods-run)
+- [instance.getProp( propertyName )](#instance-methods-getprop)
+- [instance.abort() ](#instance-methods-abort)
 
 <a name="instance-methods-long"></a>
 ### Instance Methods
@@ -141,6 +141,7 @@ var req = new http("posts.php?foo=bar");
 **instance.url(`url`)** &mdash; Sets the request url.
 
 - `url` (`String`, _Required_)
+    - Internally defaults to `document.URL` when nothing explicitly set.
 - **Returns** instance.
 
 ```js
@@ -151,6 +152,7 @@ req.url("posts.php?foo=bar");
 **instance.data(`data`)** &mdash; Sets the request data.
 
 - `data` (`String|Object|FormData`, _Required_)
+    - Internally defaults to `null` when nothing explicitly set.
 - **Returns** instance.
 
 ```js
@@ -167,7 +169,8 @@ req.data(new FormData());
 <a name="instance-methods-method"></a>
 **instance.method(`type`)** &mdash; Sets the request method.
 
-- `type` (`String`, _Optional_, Default: `"GET"`)
+- `type` (`String`, _Required_)
+    - Internally defaults to `"GET"` when nothing explicitly set.
     - Case insensitive.
     - Possible values: `"GET"`, `"POST"`, `"PUT"`, `"DELETE"`, `"HEAD"`, `"OPTIONS"`
 - **Returns** instance.
@@ -179,7 +182,8 @@ req.method("POST");
 <a name="instance-methods-fileupload"></a>
 **instance.fileUpload(`flag`)** &mdash; Sets the `fileUpload` flag indicating whether files are being uploaded.
 
-- `flag` (`Boolean`, _Optional_, Default: `false`)
+- `flag` (`Boolean`, _Required_)
+    - Internally defaults to `false` when nothing explicitly set.
     - Possible values: `true`, `false`
 - **Returns** instance.
 
@@ -190,7 +194,8 @@ req.fileUpload(true);
 <a name="instance-methods-processdata"></a>
 **instance.processData(`flag`)** &mdash; Sets the `processData` flag indicating whether the passed data should be processed.
 
-- `flag` (`Boolean`, _Optional_, Default: `true`)
+- `flag` (`Boolean`, _Required_)
+    - Internally defaults to `true` when nothing explicitly set.
     - Possible values: `true`, `false`
 - **Returns** instance.
 
@@ -203,7 +208,8 @@ req.processData(true);
 <a name="instance-methods-postjson"></a>
 **instance.postJSON(`flag`)** &mdash; Sets the `postJSON` flag indicating whether the data should be stringified.
 
-- `flag` (`Boolean`, _Optional_, Default: `false`)
+- `flag` (`Boolean`, _Required_)
+    - Internally defaults to `false` when nothing explicitly set.
     - Possible values: `true`, `false`
 - **Returns** instance.
 
@@ -214,7 +220,8 @@ req.postJSON(true);
 <a name="instance-methods-parsejson"></a>
 **instance.parseJSON** &mdash; Sets the `parseJSON` flag indicating whether the responded data should be parse with `JSON.parse`.
 
-- `flag` (`Boolean`, _Optional_, Default: `false`)
+- `flag` (`Boolean`, _Required_)
+    - Internally defaults to `false` when nothing explicitly set.
     - Possible values: `true`, `false`
 - **Returns** instance.
 
@@ -227,7 +234,8 @@ req.parseJSON(true);
 <a name="instance-methods-withcredentials"></a>
 **instance.withCredentials(`flag`)** &mdash; Sets the `withCredentials` flag indicating whether CORS needs to be used.
 
-- `flag` (`Boolean`, _Optional_, Default: `false`)
+- `flag` (`Boolean`, _Required_)
+    - Internally defaults to `false` when nothing explicitly set.
     - Possible values: `true`, `false`
 - **Returns** instance.
 
@@ -238,7 +246,8 @@ req.withCredentials(false);
 <a name="instance-methods-cache"></a>
 **instance.cache(`flag`)** &mdash; Sets the `cache` flag indicating whether cache the request.
 
-- `flag` (`Boolean`, _Optional_, Default: `false`)
+- `flag` (`Boolean`, _Required_)
+    - Internally defaults to `false` when nothing explicitly set.
     - Possible values: `true`, `false`
 - **Returns** instance.
 
@@ -249,7 +258,8 @@ req.cache(false);
 <a name="instance-methods-async"></a>
 **instance.async(`flag`)** &mdash; Sets the `async` flag indicating whether request will be async or not.
 
-- `flag` (`Boolean`, _Optional_, Default: `true`)
+- `flag` (`Boolean`, _Required_)
+    - Internally defaults to `true` when nothing explicitly set.
     - Possible values: `true`, `false`
 - **Returns** instance.
 
@@ -274,7 +284,7 @@ req.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 **instance.id(`id`)** &mdash; Sets the request ID.
 
 - `id` (`String`, _Required_)
-    - Defaults to an internally randomly generated `id` when not explicitly set via `instance.id`.
+    - Internally defaults to a randomly generated ID when nothing explicitly set.
     - `id` is used to track the request to abort if needed.
     - **Note**: `id` must be unique.
 - **Returns** instance.
@@ -286,7 +296,8 @@ req.id("some-unique-string-id");
 <a name="instance-methods-responsetype"></a>
 **instance.responseType(`type`)** &mdash; Sets the request `responseType`.
 
-- `type` (`String`, _Required_, Default: `""`)
+- `type` (`String`, _Required_)
+    - Internally defaults to `""` when nothing explicitly set.
 - **Returns** instance.
 
 ```js
@@ -296,7 +307,8 @@ req.responseType("json");
 <a name="instance-methods-timeout"></a>
 **instance.timeout(`time`)** &mdash; Sets the request `timeout` time.
 
-- `time` (`Number`, _Required_, Default: `10000`)
+- `time` (`Number`, _Required_)
+    - Internally defaults to `10000` (10 seconds) when nothing explicitly set.
 - **Returns** instance.
 
 ```js
@@ -306,8 +318,8 @@ req.timeout(5000); // 5 seconds
 <a name="instance-methods-events"></a>
 **instance.events(`events`)** &mdash; Sets the request `events`.
 
-- `id` (`Object`, _Required_, Default: `{}`)
-    - Defaults to empty events object (no events).
+- `id` (`Object`, _Required_)
+    - Internally defaults to `{}`, empty events object (no events), when nothing explicitly set.
     - Supported events: `abort`, `timeout`, `progress`, `loadstart`, `loadend`, `readystatechange`, `load`, `error`
 - **Returns** instance.
 
@@ -340,10 +352,10 @@ req.run();
 ```
 
 <a name="instance-methods-getprop"></a>
-**instance.getProp** &mdash; Gets an http object property.
+**instance.getProp(property)** &mdash; Gets an http object property.
 
-- `id` (`String`, _Required_)
-    - Supported gettable properties:
+- `property` (`String`, _Required_)
+    - Gettable properties:
         - `id`: The ID of the request.
         - `callbacks`: Object containing all the provided callbacks.
         - `aborted`: Boolean representing whether the request was aborted or not.
