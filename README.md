@@ -8,14 +8,14 @@ A lightweight JavaScript XHR wrapper.
 - [What It Does](#what-it-does)
 - [Add To Project](#add-to-project)
 - [Access Library](#access-library)
-- [Instance Creation](#instance-creation)
 - [API](#api)
     - [Global](#global-api)
-        - [QuickTable](#global-quicktable-reference)
+        - [Methods List](#global-methods-list)
         - [Methods](#global-methods-long)
     - [Instance](#instance-api)
         - [Signature](#signature-api)
-        - [QuickTable](#instance-quicktable-reference)
+        - [Instance Creation](#instance-creation)
+        - [Methods List](#instance-methods-list)
         - [Methods](#instance-methods-long)
 - [Usage](#usage)
     - [Handling HTTP Errors](#handling-http-errors)
@@ -62,17 +62,16 @@ var http = window.app.libs.http;
 <a name="global-api"></a>
 ### Global
 
-<a name="global-quicktable-reference"></a>
-### Global QuickTable Reference
+<a name="global-methods-list"></a>
+### Global Methods List
 
-Method | Function
------------- | -------------
-`abortAll` | Aborts all pending requests.
+- [http.abortAll()](#global-methods-abortall)
 
 <a name="global-methods-long"></a>
 ### Global Methods
 
-► **instance.abortAll** &mdash; Aborts all pending requests.
+<a name="global-methods-abortall"></a>
+**http.abortAll** &mdash; Aborts all pending requests.
 
 - **No Parameters**
 
@@ -88,7 +87,7 @@ http.abortAll();
 
 ```js
 /**
- * @param  {String: Optional} [The resource URL. It can be provided on
+ * @param  {String: Optional} [The resource url. It can be provided on
  *                             instance creation or can be provided later via
  *                             instance.url.]
  * @return {Object}           [The new inactive http instance.]
@@ -107,51 +106,51 @@ var req = new http();
 var req = http();
 ```
 
-**Note**: The `URL` can also be provided upon instance creation. If not provided it must be provided later via `instance.url()`.
+**Note**: The url can also be provided upon instance creation. If not provided it must be provided later via `instance.url`.
 
 ```js
 var req = new http("posts.php?foo=bar");
 ```
-<!-- 
-<a name="instance-quicktable-reference"></a>
-### Instance QuickTable Reference
 
-Method | Function
------------- | -------------
-`url` | Sets the request URL.
-`data` | Sets the request data.
-`method` | Sets the request method.
-`fileUpload` | Sets the `fileUpload` flag indicating whether files are being uploaded.
-`processData` | Sets the `processData` flag indicating whether the passed data should be processed.
-`postJSON` | Sets the `postJSON` flag indicating whether the data should be stringified.
-`parseJSON` | Sets the `parseJSON` flag indicating whether the responded data should be parsed with `JSON.parse`.
-`withCredentials` | Sets the `withCredentials` flag indicating whether `CORS` needs to be used.
-`cache` |  Sets the `cache` flag indicating whether cache the request.
-`async` | Sets the `async` flag indicating whether request will be async or not.
-`header` |  Sets the a request header.
-`id` | Sets the request ID.
-`responseType` | Sets the request responseType.
-`timeout` | Sets the request timeout time.
-`events` | Sets the request events.
-`run` | Runs the request.
-`getProp` | Gets an http object property.
-`abort` | Aborts request. -->
+<a name="instance-methods-list"></a>
+### Instance Methods List
+
+- [instance.url()](#instance-methods-url)
+- [instance.data()](#instance-methods-data)
+- [instance.method()](#instance-methods-method)
+- [instance.fileUpload()](#instance-methods-fileupload)
+- [instance.processData()](#instance-methods-processdata)
+- [instance.postJSON()](#instance-methods-postjson)
+- [instance.parseJSON()](#instance-methods-parsejson)
+- [instance.withCredentials()](#instance-methods-withcredentials)
+- [instance.cache()](#instance-methods-cache)
+- [instance.async()](#instance-methods-async)
+- [instance.header()](#instance-methods-header)
+- [instance.id()](#instance-methods-id)
+- [instance.responseType()](#instance-methods-responsetype)
+- [instance.timeout()](#instance-methods-timeout)
+- [instance.events()](#instance-methods-events)
+- [instance.run()](#instance-methods-run)
+- [instance.getProp()](#instance-methods-getprop)
+- [instance.abort()](#instance-methods-abort)
 
 <a name="instance-methods-long"></a>
 ### Instance Methods
 
-► **instance.url(`URL`)** &mdash; Sets the request URL.
+<a name="instance-methods-url"></a>
+**instance.url(`url`)** &mdash; Sets the request url.
 
-- `URL` (`String`, _Required_, Default: `""`)
+- `url` (`String`, _Required_)
 - **Returns** instance.
 
 ```js
 req.url("posts.php?foo=bar");
 ```
 
-► **instance.data(`data`)** &mdash; Sets the request data.
+<a name="instance-methods-data"></a>
+**instance.data(`data`)** &mdash; Sets the request data.
 
-- `data` (`String|Object|FormData`, _Optional_, Default: `null`)
+- `data` (`String|Object|FormData`, _Required_)
 - **Returns** instance.
 
 ```js
@@ -165,7 +164,8 @@ req.data({ "msg": "Hello World!!", "name": "Selena Gomez" });
 req.data(new FormData());
 ```
 
-► **instance.method(`type`)** &mdash; Sets the request method.
+<a name="instance-methods-method"></a>
+**instance.method(`type`)** &mdash; Sets the request method.
 
 - `type` (`String`, _Optional_, Default: `"GET"`)
     - Case insensitive.
@@ -176,7 +176,8 @@ req.data(new FormData());
 req.method("POST");
 ```
 
-► **instance.fileUpload(`flag`)** &mdash; Sets the `fileUpload` flag indicating whether files are being uploaded.
+<a name="instance-methods-fileupload"></a>
+**instance.fileUpload(`flag`)** &mdash; Sets the `fileUpload` flag indicating whether files are being uploaded.
 
 - `flag` (`Boolean`, _Optional_, Default: `false`)
     - Possible values: `true`, `false`
@@ -186,19 +187,21 @@ req.method("POST");
 req.fileUpload(true);
 ```
 
-► **instance.processData(`flag`)** &mdash; Sets the `processData` flag indicating whether the passed data should be processed.
+<a name="instance-methods-processdata"></a>
+**instance.processData(`flag`)** &mdash; Sets the `processData` flag indicating whether the passed data should be processed.
 
 - `flag` (`Boolean`, _Optional_, Default: `true`)
     - Possible values: `true`, `false`
 - **Returns** instance.
 
-**Note**: Setting flag to true will process strings and objects.
+**Note**: Setting flag to true will only process strings and objects.
 
 ```js
 req.processData(true);
 ```
 
-► **instance.postJSON(`flag`)** &mdash; Sets the `postJSON` flag indicating whether the data should be stringified.
+<a name="instance-methods-postjson"></a>
+**instance.postJSON(`flag`)** &mdash; Sets the `postJSON` flag indicating whether the data should be stringified.
 
 - `flag` (`Boolean`, _Optional_, Default: `false`)
     - Possible values: `true`, `false`
@@ -208,19 +211,21 @@ req.processData(true);
 req.postJSON(true);
 ```
 
-► **instance.parseJSON** &mdash; Sets the `parseJSON` flag indicating whether the responded data should be parse with `JSON.parse`.
+<a name="instance-methods-parsejson"></a>
+**instance.parseJSON** &mdash; Sets the `parseJSON` flag indicating whether the responded data should be parse with `JSON.parse`.
 
 - `flag` (`Boolean`, _Optional_, Default: `false`)
     - Possible values: `true`, `false`
 - **Returns** instance.
 
+**Note**: Setting flag to true will try to parse the returned data and set the result to the `XHR` object under the a synthetic (custom) property named `responseJSON`. The property defaults to a value of `null`.
+
 ```js
-// Setting flag to true will parse the returned data and set the requests 
-// responseJSON (synthetic) property to the parse JSON result.
 req.parseJSON(true);
 ```
 
-► **instance.withCredentials(`flag`)** &mdash; Sets the withCredentials flag indicating whether CORS needs to be used.
+<a name="instance-methods-withcredentials"></a>
+**instance.withCredentials(`flag`)** &mdash; Sets the `withCredentials` flag indicating whether CORS needs to be used.
 
 - `flag` (`Boolean`, _Optional_, Default: `false`)
     - Possible values: `true`, `false`
@@ -230,7 +235,8 @@ req.parseJSON(true);
 req.withCredentials(false);
 ```
 
-► **instance.cache(`flag`)** &mdash; Sets the cache flag indicating whether cache the request.
+<a name="instance-methods-cache"></a>
+**instance.cache(`flag`)** &mdash; Sets the `cache` flag indicating whether cache the request.
 
 - `flag` (`Boolean`, _Optional_, Default: `false`)
     - Possible values: `true`, `false`
@@ -240,7 +246,8 @@ req.withCredentials(false);
 req.cache(false);
 ```
 
-► **instance.async(`flag`)** &mdash; Sets the async flag indicating whether request will be async or not.
+<a name="instance-methods-async"></a>
+**instance.async(`flag`)** &mdash; Sets the `async` flag indicating whether request will be async or not.
 
 - `flag` (`Boolean`, _Optional_, Default: `true`)
     - Possible values: `true`, `false`
@@ -250,19 +257,21 @@ req.cache(false);
 req.async(true);
 ```
 
-► **instance.header(`headerName`, `headerValue`)** &mdash; Sets the a request header.
+<a name="instance-methods-header"></a>
+**instance.header(`headerName`, `headerValue`)** &mdash; Sets the a request header.
 
 - `headerName` (`String`, _Required_)
 - `headerValue` (`String`, _Required_)
 - **Returns** instance.
 
-**Note**: If not provided the only header set is the `Content-Type` header. It's set with a value of `"application/x-www-form-urlencoded;charset=UTF-8"`. The content type header is left out for file uploads to let browser determine correct `contentType` and `boundaries`.
+**Note**: If not provided the only header set is the `Content-Type` header. It's set with a value of `"application/x-www-form-urlencoded;charset=UTF-8"`. The content type header is left out for file uploads to let browser determine correct contentType and boundaries.
 
 ```js
 req.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 ```
 
-► **instance.id(`id`)** &mdash; Sets the request ID.
+<a name="instance-methods-id"></a>
+**instance.id(`id`)** &mdash; Sets the request ID.
 
 - `id` (`String`, _Required_)
     - Defaults to an internally randomly generated `id` when not explicitly set via `instance.id`.
@@ -274,7 +283,8 @@ req.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 req.id("some-unique-string-id");
 ```
 
-► **instance.responseType(`type`)** &mdash; Sets the request responseType.
+<a name="instance-methods-responsetype"></a>
+**instance.responseType(`type`)** &mdash; Sets the request `responseType`.
 
 - `type` (`String`, _Required_, Default: `""`)
 - **Returns** instance.
@@ -283,7 +293,8 @@ req.id("some-unique-string-id");
 req.responseType("json");
 ```
 
-► **instance.timeout(`time`)** &mdash; Sets the request timeout time.
+<a name="instance-methods-timeout"></a>
+**instance.timeout(`time`)** &mdash; Sets the request `timeout` time.
 
 - `time` (`Number`, _Required_, Default: `10000`)
 - **Returns** instance.
@@ -292,7 +303,8 @@ req.responseType("json");
 req.timeout(5000); // 5 seconds
 ```
 
-► **instance.events(`events`)** &mdash; Sets the request events.
+<a name="instance-methods-events"></a>
+**instance.events(`events`)** &mdash; Sets the request `events`.
 
 - `id` (`Object`, _Required_, Default: `{}`)
     - Defaults to empty events object (no events).
@@ -315,22 +327,24 @@ req.events({
 });
 ```
 
-► **instance.run** &mdash; Runs the request.
+<a name="instance-methods-run"></a>
+**instance.run** &mdash; Runs the request.
 
 - **No Parameters**
 - **Returns** a `promise`.
 
-**Note**: Once the request is run the object is locked. This means the object can no longer be modified via instance methods.
+**Note**: Once the request is run the object gets locked. This means the object can no longer be modified via instance methods.
 
 ```js
 req.run();
 ```
 
-► **instance.getProp** &mdash; Gets an http object property.
+<a name="instance-methods-getprop"></a>
+**instance.getProp** &mdash; Gets an http object property.
 
 - `id` (`String`, _Required_)
     - Supported gettable properties:
-        - `id`: The `id` of the request.
+        - `id`: The ID of the request.
         - `callbacks`: Object containing all the provided callbacks.
         - `aborted`: Boolean representing whether the request was aborted or not.
         - `locked`: Boolean representing whether the request instance has locked. Gets locked after running the request via `instance.run`.
@@ -347,7 +361,8 @@ req.getProp("id"); // returns the http's instance id
 req.getProp("aborted"); // returns Boolean representing whether the request was aborted or not
 ```
 
-► **instance.abort** &mdash; Aborts request.
+<a name="instance-methods-abort"></a>
+**instance.abort** &mdash; Aborts request.
 
 - **No Parameters**
 - **Returns** Nothing.

@@ -19,16 +19,16 @@
 <li><a href="#what-it-does">What It Does</a></li>
 <li><a href="#add-to-project">Add To Project</a></li>
 <li><a href="#access-library">Access Library</a></li>
-<li><a href="#instance-creation">Instance Creation</a></li>
 <li><a href="#api">API</a><ul class="list">
 <li><a href="#global-api">Global</a><ul class="list">
-<li><a href="#global-quicktable-reference">QuickTable</a></li>
+<li><a href="#global-methods-list">Methods List</a></li>
 <li><a href="#global-methods-long">Methods</a></li>
 </ul>
 </li>
 <li><a href="#instance-api">Instance</a><ul class="list">
 <li><a href="#signature-api">Signature</a></li>
-<li><a href="#instance-quicktable-reference">QuickTable</a></li>
+<li><a href="#instance-creation">Instance Creation</a></li>
+<li><a href="#instance-methods-list">Methods List</a></li>
 <li><a href="#instance-methods-long">Methods</a></li>
 </ul>
 </li>
@@ -66,25 +66,15 @@
 <h2 id="api">API</h2>
 <p><a name="global-api"></a></p>
 <h3 id="global">Global</h3>
-<p><a name="global-quicktable-reference"></a></p>
-<h3 id="global-quicktable-reference">Global QuickTable Reference</h3>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>abortAll</code></td>
-<td>Aborts all pending requests.</td>
-</tr>
-</tbody>
-</table>
+<p><a name="global-methods-list"></a></p>
+<h3 id="global-methods-list">Global Methods List</h3>
+<ul class="list">
+<li><a href="#global-methods-abortall">http.abortAll()</a></li>
+</ul>
 <p><a name="global-methods-long"></a></p>
 <h3 id="global-methods">Global Methods</h3>
-<p>► <strong>instance.abortAll</strong> &mdash; Aborts all pending requests.</p>
+<p><a name="global-methods-abortall"></a>
+<strong>http.abortAll</strong> &mdash; Aborts all pending requests.</p>
 <ul class="list">
 <li><strong>No Parameters</strong></li>
 </ul>
@@ -93,7 +83,7 @@
 <p><a name="signature-api"></a></p>
 <h3 id="instance-signature">Instance Signature</h3>
 <pre class="hljs"><code><span class="hljs-comment">/**
- * @param  {String: Optional} [The resource URL. It can be provided on
+ * @param  {String: Optional} [The resource url. It can be provided on
  *                             instance creation or can be provided later via
  *                             instance.url.]
  * @return {Object}           [The new inactive http instance.]
@@ -103,41 +93,41 @@
 <pre class="hljs"><code><span class="hljs-comment">// this...</span>
 <span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http();
 <span class="hljs-comment">// is the same as this</span>
-<span class="hljs-keyword">var</span> req = http();</code></pre><p><strong>Note</strong>: The <code>URL</code> can also be provided upon instance creation. If not provided it must be provided later via <code>instance.url()</code>.</p>
-<pre class="hljs"><code><span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><!-- 
-<a name="instance-quicktable-reference"></a>
-### Instance QuickTable Reference
-
-Method | Function
------------- | -------------
-`url` | Sets the request URL.
-`data` | Sets the request data.
-`method` | Sets the request method.
-`fileUpload` | Sets the `fileUpload` flag indicating whether files are being uploaded.
-`processData` | Sets the `processData` flag indicating whether the passed data should be processed.
-`postJSON` | Sets the `postJSON` flag indicating whether the data should be stringified.
-`parseJSON` | Sets the `parseJSON` flag indicating whether the responded data should be parsed with `JSON.parse`.
-`withCredentials` | Sets the `withCredentials` flag indicating whether `CORS` needs to be used.
-`cache` |  Sets the `cache` flag indicating whether cache the request.
-`async` | Sets the `async` flag indicating whether request will be async or not.
-`header` |  Sets the a request header.
-`id` | Sets the request ID.
-`responseType` | Sets the request responseType.
-`timeout` | Sets the request timeout time.
-`events` | Sets the request events.
-`run` | Runs the request.
-`getProp` | Gets an http object property.
-`abort` | Aborts request. -->
+<span class="hljs-keyword">var</span> req = http();</code></pre><p><strong>Note</strong>: The url can also be provided upon instance creation. If not provided it must be provided later via <code>instance.url</code>.</p>
+<pre class="hljs"><code><span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><p><a name="instance-methods-list"></a></p>
+<h3 id="instance-methods-list">Instance Methods List</h3>
+<ul class="list">
+<li><a href="#instance-methods-url">instance.url()</a></li>
+<li><a href="#instance-methods-data">instance.data()</a></li>
+<li><a href="#instance-methods-method">instance.method()</a></li>
+<li><a href="#instance-methods-fileupload">instance.fileUpload()</a></li>
+<li><a href="#instance-methods-processdata">instance.processData()</a></li>
+<li><a href="#instance-methods-postjson">instance.postJSON()</a></li>
+<li><a href="#instance-methods-parsejson">instance.parseJSON()</a></li>
+<li><a href="#instance-methods-withcredentials">instance.withCredentials()</a></li>
+<li><a href="#instance-methods-cache">instance.cache()</a></li>
+<li><a href="#instance-methods-async">instance.async()</a></li>
+<li><a href="#instance-methods-header">instance.header()</a></li>
+<li><a href="#instance-methods-id">instance.id()</a></li>
+<li><a href="#instance-methods-responsetype">instance.responseType()</a></li>
+<li><a href="#instance-methods-timeout">instance.timeout()</a></li>
+<li><a href="#instance-methods-events">instance.events()</a></li>
+<li><a href="#instance-methods-run">instance.run()</a></li>
+<li><a href="#instance-methods-getprop">instance.getProp()</a></li>
+<li><a href="#instance-methods-abort">instance.abort()</a></li>
+</ul>
 <p><a name="instance-methods-long"></a></p>
 <h3 id="instance-methods">Instance Methods</h3>
-<p>► <strong>instance.url(<code>URL</code>)</strong> &mdash; Sets the request URL.</p>
+<p><a name="instance-methods-url"></a>
+<strong>instance.url(<code>url</code>)</strong> &mdash; Sets the request url.</p>
 <ul class="list">
-<li><code>URL</code> (<code>String</code>, <em>Required</em>, Default: <code>&quot;&quot;</code>)</li>
+<li><code>url</code> (<code>String</code>, <em>Required</em>)</li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.url(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><p>► <strong>instance.data(<code>data</code>)</strong> &mdash; Sets the request data.</p>
+<pre class="hljs"><code>req.url(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><p><a name="instance-methods-data"></a>
+<strong>instance.data(<code>data</code>)</strong> &mdash; Sets the request data.</p>
 <ul class="list">
-<li><code>data</code> (<code>String|Object|FormData</code>, <em>Optional</em>, Default: <code>null</code>)</li>
+<li><code>data</code> (<code>String|Object|FormData</code>, <em>Required</em>)</li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
 <pre class="hljs"><code><span class="hljs-comment">// String Data</span>
@@ -147,7 +137,8 @@ req.data(<span class="hljs-string">"msg=Hello World!&amp;name=Selena Gomez"</spa
 req.data({ <span class="hljs-string">"msg"</span>: <span class="hljs-string">"Hello World!!"</span>, <span class="hljs-string">"name"</span>: <span class="hljs-string">"Selena Gomez"</span> });
 
 <span class="hljs-comment">// FormData</span>
-req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p>► <strong>instance.method(<code>type</code>)</strong> &mdash; Sets the request method.</p>
+req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p><a name="instance-methods-method"></a>
+<strong>instance.method(<code>type</code>)</strong> &mdash; Sets the request method.</p>
 <ul class="list">
 <li><code>type</code> (<code>String</code>, <em>Optional</em>, Default: <code>&quot;GET&quot;</code>)<ul class="list">
 <li>Case insensitive.</li>
@@ -156,7 +147,8 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p>► <
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.method(<span class="hljs-string">"POST"</span>);</code></pre><p>► <strong>instance.fileUpload(<code>flag</code>)</strong> &mdash; Sets the <code>fileUpload</code> flag indicating whether files are being uploaded.</p>
+<pre class="hljs"><code>req.method(<span class="hljs-string">"POST"</span>);</code></pre><p><a name="instance-methods-fileupload"></a>
+<strong>instance.fileUpload(<code>flag</code>)</strong> &mdash; Sets the <code>fileUpload</code> flag indicating whether files are being uploaded.</p>
 <ul class="list">
 <li><code>flag</code> (<code>Boolean</code>, <em>Optional</em>, Default: <code>false</code>)<ul class="list">
 <li>Possible values: <code>true</code>, <code>false</code></li>
@@ -164,7 +156,8 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p>► <
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.fileUpload(<span class="hljs-literal">true</span>);</code></pre><p>► <strong>instance.processData(<code>flag</code>)</strong> &mdash; Sets the <code>processData</code> flag indicating whether the passed data should be processed.</p>
+<pre class="hljs"><code>req.fileUpload(<span class="hljs-literal">true</span>);</code></pre><p><a name="instance-methods-processdata"></a>
+<strong>instance.processData(<code>flag</code>)</strong> &mdash; Sets the <code>processData</code> flag indicating whether the passed data should be processed.</p>
 <ul class="list">
 <li><code>flag</code> (<code>Boolean</code>, <em>Optional</em>, Default: <code>true</code>)<ul class="list">
 <li>Possible values: <code>true</code>, <code>false</code></li>
@@ -172,8 +165,9 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p>► <
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<p><strong>Note</strong>: Setting flag to true will process strings and objects.</p>
-<pre class="hljs"><code>req.processData(<span class="hljs-literal">true</span>);</code></pre><p>► <strong>instance.postJSON(<code>flag</code>)</strong> &mdash; Sets the <code>postJSON</code> flag indicating whether the data should be stringified.</p>
+<p><strong>Note</strong>: Setting flag to true will only process strings and objects.</p>
+<pre class="hljs"><code>req.processData(<span class="hljs-literal">true</span>);</code></pre><p><a name="instance-methods-postjson"></a>
+<strong>instance.postJSON(<code>flag</code>)</strong> &mdash; Sets the <code>postJSON</code> flag indicating whether the data should be stringified.</p>
 <ul class="list">
 <li><code>flag</code> (<code>Boolean</code>, <em>Optional</em>, Default: <code>false</code>)<ul class="list">
 <li>Possible values: <code>true</code>, <code>false</code></li>
@@ -181,7 +175,8 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p>► <
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.postJSON(<span class="hljs-literal">true</span>);</code></pre><p>► <strong>instance.parseJSON</strong> &mdash; Sets the <code>parseJSON</code> flag indicating whether the responded data should be parse with <code>JSON.parse</code>.</p>
+<pre class="hljs"><code>req.postJSON(<span class="hljs-literal">true</span>);</code></pre><p><a name="instance-methods-parsejson"></a>
+<strong>instance.parseJSON</strong> &mdash; Sets the <code>parseJSON</code> flag indicating whether the responded data should be parse with <code>JSON.parse</code>.</p>
 <ul class="list">
 <li><code>flag</code> (<code>Boolean</code>, <em>Optional</em>, Default: <code>false</code>)<ul class="list">
 <li>Possible values: <code>true</code>, <code>false</code></li>
@@ -189,9 +184,9 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p>► <
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code><span class="hljs-comment">// Setting flag to true will parse the returned data and set the requests </span>
-<span class="hljs-comment">// responseJSON (synthetic) property to the parse JSON result.</span>
-req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p>► <strong>instance.withCredentials(<code>flag</code>)</strong> &mdash; Sets the withCredentials flag indicating whether CORS needs to be used.</p>
+<p><strong>Note</strong>: Setting flag to true will try to parse the returned data and set the result to the <code>XHR</code> object under the a synthetic (custom) property named <code>responseJSON</code>. The property defaults to a value of <code>null</code>.</p>
+<pre class="hljs"><code>req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p><a name="instance-methods-withcredentials"></a>
+<strong>instance.withCredentials(<code>flag</code>)</strong> &mdash; Sets the <code>withCredentials</code> flag indicating whether CORS needs to be used.</p>
 <ul class="list">
 <li><code>flag</code> (<code>Boolean</code>, <em>Optional</em>, Default: <code>false</code>)<ul class="list">
 <li>Possible values: <code>true</code>, <code>false</code></li>
@@ -199,7 +194,8 @@ req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p>► <stron
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.withCredentials(<span class="hljs-literal">false</span>);</code></pre><p>► <strong>instance.cache(<code>flag</code>)</strong> &mdash; Sets the cache flag indicating whether cache the request.</p>
+<pre class="hljs"><code>req.withCredentials(<span class="hljs-literal">false</span>);</code></pre><p><a name="instance-methods-cache"></a>
+<strong>instance.cache(<code>flag</code>)</strong> &mdash; Sets the <code>cache</code> flag indicating whether cache the request.</p>
 <ul class="list">
 <li><code>flag</code> (<code>Boolean</code>, <em>Optional</em>, Default: <code>false</code>)<ul class="list">
 <li>Possible values: <code>true</code>, <code>false</code></li>
@@ -207,7 +203,8 @@ req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p>► <stron
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.cache(<span class="hljs-literal">false</span>);</code></pre><p>► <strong>instance.async(<code>flag</code>)</strong> &mdash; Sets the async flag indicating whether request will be async or not.</p>
+<pre class="hljs"><code>req.cache(<span class="hljs-literal">false</span>);</code></pre><p><a name="instance-methods-async"></a>
+<strong>instance.async(<code>flag</code>)</strong> &mdash; Sets the <code>async</code> flag indicating whether request will be async or not.</p>
 <ul class="list">
 <li><code>flag</code> (<code>Boolean</code>, <em>Optional</em>, Default: <code>true</code>)<ul class="list">
 <li>Possible values: <code>true</code>, <code>false</code></li>
@@ -215,14 +212,16 @@ req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p>► <stron
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.async(<span class="hljs-literal">true</span>);</code></pre><p>► <strong>instance.header(<code>headerName</code>, <code>headerValue</code>)</strong> &mdash; Sets the a request header.</p>
+<pre class="hljs"><code>req.async(<span class="hljs-literal">true</span>);</code></pre><p><a name="instance-methods-header"></a>
+<strong>instance.header(<code>headerName</code>, <code>headerValue</code>)</strong> &mdash; Sets the a request header.</p>
 <ul class="list">
 <li><code>headerName</code> (<code>String</code>, <em>Required</em>)</li>
 <li><code>headerValue</code> (<code>String</code>, <em>Required</em>)</li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<p><strong>Note</strong>: If not provided the only header set is the <code>Content-Type</code> header. It&#39;s set with a value of <code>&quot;application/x-www-form-urlencoded;charset=UTF-8&quot;</code>. The content type header is left out for file uploads to let browser determine correct <code>contentType</code> and <code>boundaries</code>.</p>
-<pre class="hljs"><code>req.header(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/x-www-form-urlencoded;charset=UTF-8"</span>);</code></pre><p>► <strong>instance.id(<code>id</code>)</strong> &mdash; Sets the request ID.</p>
+<p><strong>Note</strong>: If not provided the only header set is the <code>Content-Type</code> header. It&#39;s set with a value of <code>&quot;application/x-www-form-urlencoded;charset=UTF-8&quot;</code>. The content type header is left out for file uploads to let browser determine correct contentType and boundaries.</p>
+<pre class="hljs"><code>req.header(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/x-www-form-urlencoded;charset=UTF-8"</span>);</code></pre><p><a name="instance-methods-id"></a>
+<strong>instance.id(<code>id</code>)</strong> &mdash; Sets the request ID.</p>
 <ul class="list">
 <li><code>id</code> (<code>String</code>, <em>Required</em>)<ul class="list">
 <li>Defaults to an internally randomly generated <code>id</code> when not explicitly set via <code>instance.id</code>.</li>
@@ -232,17 +231,20 @@ req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p>► <stron
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.id(<span class="hljs-string">"some-unique-string-id"</span>);</code></pre><p>► <strong>instance.responseType(<code>type</code>)</strong> &mdash; Sets the request responseType.</p>
+<pre class="hljs"><code>req.id(<span class="hljs-string">"some-unique-string-id"</span>);</code></pre><p><a name="instance-methods-responsetype"></a>
+<strong>instance.responseType(<code>type</code>)</strong> &mdash; Sets the request <code>responseType</code>.</p>
 <ul class="list">
 <li><code>type</code> (<code>String</code>, <em>Required</em>, Default: <code>&quot;&quot;</code>)</li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.responseType(<span class="hljs-string">"json"</span>);</code></pre><p>► <strong>instance.timeout(<code>time</code>)</strong> &mdash; Sets the request timeout time.</p>
+<pre class="hljs"><code>req.responseType(<span class="hljs-string">"json"</span>);</code></pre><p><a name="instance-methods-timeout"></a>
+<strong>instance.timeout(<code>time</code>)</strong> &mdash; Sets the request <code>timeout</code> time.</p>
 <ul class="list">
 <li><code>time</code> (<code>Number</code>, <em>Required</em>, Default: <code>10000</code>)</li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<pre class="hljs"><code>req.timeout(<span class="hljs-number">5000</span>); <span class="hljs-comment">// 5 seconds</span></code></pre><p>► <strong>instance.events(<code>events</code>)</strong> &mdash; Sets the request events.</p>
+<pre class="hljs"><code>req.timeout(<span class="hljs-number">5000</span>); <span class="hljs-comment">// 5 seconds</span></code></pre><p><a name="instance-methods-events"></a>
+<strong>instance.events(<code>events</code>)</strong> &mdash; Sets the request <code>events</code>.</p>
 <ul class="list">
 <li><code>id</code> (<code>Object</code>, <em>Required</em>, Default: <code>{}</code>)<ul class="list">
 <li>Defaults to empty events object (no events).</li>
@@ -263,17 +265,19 @@ req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p>► <stron
     <span class="hljs-comment">// however, supplying the events will still fire them</span>
     <span class="hljs-comment">// "load": function(event) { /* logic... */ }</span>
     <span class="hljs-comment">// "error": function(event) { /* logic... */ }</span>
-});</code></pre><p>► <strong>instance.run</strong> &mdash; Runs the request.</p>
+});</code></pre><p><a name="instance-methods-run"></a>
+<strong>instance.run</strong> &mdash; Runs the request.</p>
 <ul class="list">
 <li><strong>No Parameters</strong></li>
 <li><strong>Returns</strong> a <code>promise</code>.</li>
 </ul>
-<p><strong>Note</strong>: Once the request is run the object is locked. This means the object can no longer be modified via instance methods.</p>
-<pre class="hljs"><code>req.run();</code></pre><p>► <strong>instance.getProp</strong> &mdash; Gets an http object property.</p>
+<p><strong>Note</strong>: Once the request is run the object gets locked. This means the object can no longer be modified via instance methods.</p>
+<pre class="hljs"><code>req.run();</code></pre><p><a name="instance-methods-getprop"></a>
+<strong>instance.getProp</strong> &mdash; Gets an http object property.</p>
 <ul class="list">
 <li><code>id</code> (<code>String</code>, <em>Required</em>)<ul class="list">
 <li>Supported gettable properties:<ul class="list">
-<li><code>id</code>: The <code>id</code> of the request.</li>
+<li><code>id</code>: The ID of the request.</li>
 <li><code>callbacks</code>: Object containing all the provided callbacks.</li>
 <li><code>aborted</code>: Boolean representing whether the request was aborted or not.</li>
 <li><code>locked</code>: Boolean representing whether the request instance has locked. Gets locked after running the request via <code>instance.run</code>.</li>
@@ -292,7 +296,8 @@ req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p>► <stron
 <li><strong>Returns</strong> the http instance property&#39;s value.</li>
 </ul>
 <pre class="hljs"><code>req.getProp(<span class="hljs-string">"id"</span>); <span class="hljs-comment">// returns the http's instance id</span>
-req.getProp(<span class="hljs-string">"aborted"</span>); <span class="hljs-comment">// returns Boolean representing whether the request was aborted or not</span></code></pre><p>► <strong>instance.abort</strong> &mdash; Aborts request.</p>
+req.getProp(<span class="hljs-string">"aborted"</span>); <span class="hljs-comment">// returns Boolean representing whether the request was aborted or not</span></code></pre><p><a name="instance-methods-abort"></a>
+<strong>instance.abort</strong> &mdash; Aborts request.</p>
 <ul class="list">
 <li><strong>No Parameters</strong></li>
 <li><strong>Returns</strong> Nothing.</li>
