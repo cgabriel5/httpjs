@@ -21,14 +21,13 @@
 <li><a href="#access-library">Access Library</a></li>
 <li><a href="#api">API</a><ul class="list">
 <li><a href="#global-api">Global</a><ul class="list">
-<li><a href="#global-methods-list">Methods List</a></li>
+<li><a href="#global-methods-toc">TOC</a></li>
 <li><a href="#global-methods-long">Methods</a></li>
 </ul>
 </li>
 <li><a href="#instance-api">Instance</a><ul class="list">
-<li><a href="#signature-api">Signature</a></li>
-<li><a href="#instance-creation">Instance Creation</a></li>
-<li><a href="#instance-methods-list">Methods List</a></li>
+<li><a href="#instance-methods-toc">TOC</a></li>
+<li><a href="#instance-creation">Creation</a></li>
 <li><a href="#instance-methods-long">Methods</a></li>
 </ul>
 </li>
@@ -45,6 +44,7 @@
 </ul>
 </li>
 <li><a href="#contributing">Contributing</a></li>
+<li><a href="#todo">TODO</a></li>
 <li><a href="#license">License</a></li>
 </ul>
 <p><a name="project-setup"></a></p>
@@ -65,9 +65,8 @@
 <pre class="hljs"><code><span class="hljs-keyword">var</span> http = <span class="hljs-built_in">window</span>.app.libs.http;</code></pre><p><a name="api"></a></p>
 <h2 id="api">API</h2>
 <p><a name="global-api"></a></p>
-<h3 id="global">Global</h3>
-<p><a name="global-methods-list"></a></p>
-<h3 id="global-methods-list">Global Methods List</h3>
+<h3 id="api-&mdash;-global">API &mdash; Global</h3>
+<p><a name="global-methods-toc"></a></p>
 <ul class="list">
 <li><a href="#global-methods-abortall">http.abortAll()</a></li>
 </ul>
@@ -77,26 +76,13 @@
 <strong>http.abortAll</strong> &mdash; Aborts all pending requests.</p>
 <ul class="list">
 <li><strong>No Parameters</strong></li>
+<li><strong>Returns</strong> Nothing.</li>
 </ul>
 <pre class="hljs"><code>http.abortAll();</code></pre><p><a name="instance-api"></a></p>
-<h3 id="instance">Instance</h3>
-<p><a name="signature-api"></a></p>
-<h3 id="instance-signature">Instance Signature</h3>
-<pre class="hljs"><code><span class="hljs-comment">/**
- * @param  {String: Optional} [The resource url. It can be provided on
- *                             instance creation or can be provided later via
- *                             instance.url.]
- * @return {Object}           [The new inactive http instance.]
- */</span></code></pre><p><a name="instance-creation"></a></p>
-<h3 id="instance-creation">Instance Creation</h3>
-<p><strong>Note</strong>: Using the <code>new</code> keyword is not necessary. The library will make sure to use it for when when you don&#39;t. </p>
-<pre class="hljs"><code><span class="hljs-comment">// this...</span>
-<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http();
-<span class="hljs-comment">// is the same as this</span>
-<span class="hljs-keyword">var</span> req = http();</code></pre><p><strong>Note</strong>: The url can also be provided upon instance creation. If not provided it must be provided later via <code>instance.url</code>.</p>
-<pre class="hljs"><code><span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><p><a name="instance-methods-list"></a></p>
-<h3 id="instance-methods-list">Instance Methods List</h3>
+<h3 id="api-&mdash;-instance">API &mdash; Instance</h3>
+<p><a name="instance-methods-toc"></a></p>
 <ul class="list">
+<li><a href="#instance-creation">Instance</a><ul class="list">
 <li><a href="#instance-methods-url">instance.url( url )</a></li>
 <li><a href="#instance-methods-data">instance.data( data )</a></li>
 <li><a href="#instance-methods-method">instance.method( type )</a></li>
@@ -116,7 +102,26 @@
 <li><a href="#instance-methods-getprop">instance.getProp( propertyName )</a></li>
 <li><a href="#instance-methods-abort">instance.abort() </a></li>
 </ul>
-<p><a name="instance-methods-long"></a></p>
+</li>
+</ul>
+<p><a name="instance-creation"></a></p>
+<h3 id="instance-creation">Instance Creation</h3>
+<ul class="list">
+<li><code>url</code> (<code>String</code>, <em>Optional</em>)<ul class="list">
+<li>Internally defaults to <code>document.URL</code> when nothing explicitly set.</li>
+<li>Can be provided later via <code>instance.url</code>.</li>
+</ul>
+</li>
+<li><strong>Returns</strong> instance.</li>
+</ul>
+<p><strong>Note</strong>: Using the <code>new</code> keyword is not necessary. The library will make sure to use it for when when you don&#39;t. </p>
+<pre class="hljs"><code><span class="hljs-comment">// this...</span>
+<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http();
+<span class="hljs-comment">// is the same as this</span>
+<span class="hljs-keyword">var</span> req = http();
+
+<span class="hljs-comment">// instance with url</span>
+<span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"posts.php?foo=bar"</span>);</code></pre><p><a name="instance-methods-long"></a></p>
 <h3 id="instance-methods">Instance Methods</h3>
 <p><a name="instance-methods-url"></a>
 <strong>instance.url(<code>url</code>)</strong> &mdash; Sets the request url.</p>
@@ -195,7 +200,7 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p><a na
 </li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<p><strong>Note</strong>: Setting flag to true will try to parse the returned data and set the result to the <code>XHR</code> object under the a synthetic (custom) property named <code>responseJSON</code>. The property defaults to a value of <code>null</code>.</p>
+<p><strong>Note</strong>: Setting flag to true will try to parse the returned data with <code>JSON.parse</code> and add the result to the <code>XHR</code> object under the custom property <code>responseJSON</code>. This property defaults to a value of <code>null</code>.</p>
 <pre class="hljs"><code>req.parseJSON(<span class="hljs-literal">true</span>);</code></pre><p><a name="instance-methods-withcredentials"></a>
 <strong>instance.withCredentials(<code>flag</code>)</strong> &mdash; Sets the <code>withCredentials</code> flag indicating whether CORS needs to be used.</p>
 <ul class="list">
@@ -233,13 +238,13 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p><a na
 <li><code>headerValue</code> (<code>String</code>, <em>Required</em>)</li>
 <li><strong>Returns</strong> instance.</li>
 </ul>
-<p><strong>Note</strong>: If not provided the only header set is the <code>Content-Type</code> header. It&#39;s set with a value of <code>&quot;application/x-www-form-urlencoded;charset=UTF-8&quot;</code>. The content type header is left out for file uploads to let browser determine correct contentType and boundaries.</p>
+<p><strong>Note</strong>: When a <code>Content-Type</code> header is not explicitly set it will be set with a default value of <code>&quot;application/x-www-form-urlencoded;charset=UTF-8&quot;</code>. However, when uploading files, <code>instance.fileUpload(true)</code>, the header is left out to let the browser determine the proper and correct content-type and form boundaries. Information about form boundaries can be found <a href="https://stackoverflow.com/q/12348216">here</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#A_brief_introduction_to_the_submit_methods">here</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#multipartform-data">here</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition#As_a_header_for_a_multipart_body">here</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type#Directives">here</a>. </p>
 <pre class="hljs"><code>req.header(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/x-www-form-urlencoded;charset=UTF-8"</span>);</code></pre><p><a name="instance-methods-id"></a>
 <strong>instance.id(<code>id</code>)</strong> &mdash; Sets the request ID.</p>
 <ul class="list">
 <li><code>id</code> (<code>String</code>, <em>Required</em>)<ul class="list">
 <li>Internally defaults to a randomly generated ID when nothing explicitly set.</li>
-<li><code>id</code> is used to track the request to abort if needed.</li>
+<li><code>id</code> is meant to be used with a future (not yet implemented) global <code>http.get</code> method to access request from anywhere in your code.</li>
 <li><strong>Note</strong>: <code>id</code> must be unique.</li>
 </ul>
 </li>
@@ -455,6 +460,11 @@ req.run()
 <h3 id="contributing">Contributing</h3>
 <p>Contributions are welcome! Found a bug, feel like documentation is lacking/confusing and needs an update, have performance/feature suggestions or simply found a typo? Let me know! :)</p>
 <p>See how to contribute <a href="https://github.com/cgabriel5/http/blob/master/CONTRIBUTING.md">here</a>.</p>
+<h3 id="todo">TODO</h3>
+<ul class="list">
+<li>[ ] Clean/re-work code.</li>
+<li>[ ] Add a global <code>http.get</code> method to be able to access a request using its ID from anywhere.</li>
+</ul>
 <p><a name="license"></a></p>
 <h3 id="license">License</h3>
 <p>This project uses the <a href="https://github.com/cgabriel5/http/blob/master/LICENSE.txt">MIT License</a>.</p>

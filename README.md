@@ -10,12 +10,11 @@ A lightweight JavaScript XHR wrapper.
 - [Access Library](#access-library)
 - [API](#api)
     - [Global](#global-api)
-        - [Methods List](#global-methods-list)
+        - [TOC](#global-methods-toc)
         - [Methods](#global-methods-long)
     - [Instance](#instance-api)
-        - [Signature](#signature-api)
-        - [Instance Creation](#instance-creation)
-        - [Methods List](#instance-methods-list)
+        - [TOC](#instance-methods-toc)
+        - [Creation](#instance-creation)
         - [Methods](#instance-methods-long)
 - [Usage](#usage)
     - [Handling HTTP Errors](#handling-http-errors)
@@ -26,6 +25,7 @@ A lightweight JavaScript XHR wrapper.
     - [Post JSON](#example-post-json)
     - [Parse JSON](#example-parse-json)
 - [Contributing](#contributing)
+- [TODO](#todo)
 - [License](#license)
 
 <a name="project-setup"></a>
@@ -60,10 +60,9 @@ var http = window.app.libs.http;
 ## API
 
 <a name="global-api"></a>
-### Global
+### API &mdash; Global
 
-<a name="global-methods-list"></a>
-### Global Methods List
+<a name="global-methods-toc"></a>
 
 - [http.abortAll()](#global-methods-abortall)
 
@@ -74,28 +73,44 @@ var http = window.app.libs.http;
 **http.abortAll** &mdash; Aborts all pending requests.
 
 - **No Parameters**
+- **Returns** Nothing.
 
 ```js
 http.abortAll();
 ```
 
 <a name="instance-api"></a>
-### Instance
+### API &mdash; Instance
 
-<a name="signature-api"></a>
-### Instance Signature
+<a name="instance-methods-toc"></a>
 
-```js
-/**
- * @param  {String: Optional} [The resource url. It can be provided on
- *                             instance creation or can be provided later via
- *                             instance.url.]
- * @return {Object}           [The new inactive http instance.]
- */
-```
+- [Instance](#instance-creation)
+    - [instance.url( url )](#instance-methods-url)
+    - [instance.data( data )](#instance-methods-data)
+    - [instance.method( type )](#instance-methods-method)
+    - [instance.fileUpload( flag )](#instance-methods-fileupload)
+    - [instance.processData( flag )](#instance-methods-processdata)
+    - [instance.postJSON( flag )](#instance-methods-postjson)
+    - [instance.parseJSON( flag )](#instance-methods-parsejson)
+    - [instance.withCredentials( flag )](#instance-methods-withcredentials)
+    - [instance.cache( flag )](#instance-methods-cache)
+    - [instance.async( flag )](#instance-methods-async)
+    - [instance.header( headerName , headerValue )](#instance-methods-header)
+    - [instance.id( id )](#instance-methods-id)
+    - [instance.responseType( type )](#instance-methods-responsetype)
+    - [instance.timeout( time )](#instance-methods-timeout)
+    - [instance.events( events )](#instance-methods-events)
+    - [instance.run() ](#instance-methods-run)
+    - [instance.getProp( propertyName )](#instance-methods-getprop)
+    - [instance.abort() ](#instance-methods-abort)
 
 <a name="instance-creation"></a>
 ### Instance Creation
+
+- `url` (`String`, _Optional_)
+    - Internally defaults to `document.URL` when nothing explicitly set.
+    - Can be provided later via `instance.url`.
+- **Returns** instance.
 
 **Note**: Using the `new` keyword is not necessary. The library will make sure to use it for when when you don't. 
 
@@ -104,35 +119,10 @@ http.abortAll();
 var req = new http();
 // is the same as this
 var req = http();
-```
 
-**Note**: The url can also be provided upon instance creation. If not provided it must be provided later via `instance.url`.
-
-```js
+// instance with url
 var req = new http("posts.php?foo=bar");
 ```
-
-<a name="instance-methods-list"></a>
-### Instance Methods List
-
-- [instance.url( url )](#instance-methods-url)
-- [instance.data( data )](#instance-methods-data)
-- [instance.method( type )](#instance-methods-method)
-- [instance.fileUpload( flag )](#instance-methods-fileupload)
-- [instance.processData( flag )](#instance-methods-processdata)
-- [instance.postJSON( flag )](#instance-methods-postjson)
-- [instance.parseJSON( flag )](#instance-methods-parsejson)
-- [instance.withCredentials( flag )](#instance-methods-withcredentials)
-- [instance.cache( flag )](#instance-methods-cache)
-- [instance.async( flag )](#instance-methods-async)
-- [instance.header( headerName , headerValue )](#instance-methods-header)
-- [instance.id( id )](#instance-methods-id)
-- [instance.responseType( type )](#instance-methods-responsetype)
-- [instance.timeout( time )](#instance-methods-timeout)
-- [instance.events( events )](#instance-methods-events)
-- [instance.run() ](#instance-methods-run)
-- [instance.getProp( propertyName )](#instance-methods-getprop)
-- [instance.abort() ](#instance-methods-abort)
 
 <a name="instance-methods-long"></a>
 ### Instance Methods
@@ -225,7 +215,7 @@ req.postJSON(true);
     - Possible values: `true`, `false`
 - **Returns** instance.
 
-**Note**: Setting flag to true will try to parse the returned data and set the result to the `XHR` object under the a synthetic (custom) property named `responseJSON`. The property defaults to a value of `null`.
+**Note**: Setting flag to true will try to parse the returned data with `JSON.parse` and add the result to the `XHR` object under the custom property `responseJSON`. This property defaults to a value of `null`.
 
 ```js
 req.parseJSON(true);
@@ -274,7 +264,7 @@ req.async(true);
 - `headerValue` (`String`, _Required_)
 - **Returns** instance.
 
-**Note**: If not provided the only header set is the `Content-Type` header. It's set with a value of `"application/x-www-form-urlencoded;charset=UTF-8"`. The content type header is left out for file uploads to let browser determine correct contentType and boundaries.
+**Note**: When a `Content-Type` header is not explicitly set it will be set with a default value of `"application/x-www-form-urlencoded;charset=UTF-8"`. However, when uploading files, `instance.fileUpload(true)`, the header is left out to let the browser determine the proper and correct content-type and form boundaries. Information about form boundaries can be found [here](https://stackoverflow.com/q/12348216), [here](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#A_brief_introduction_to_the_submit_methods), [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#multipartform-data), [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition#As_a_header_for_a_multipart_body), and [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type#Directives). 
 
 ```js
 req.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
@@ -285,7 +275,7 @@ req.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
 - `id` (`String`, _Required_)
     - Internally defaults to a randomly generated ID when nothing explicitly set.
-    - `id` is used to track the request to abort if needed.
+    - `id` is meant to be used with a future (not yet implemented) global `http.get` method to access request from anywhere in your code.
     - **Note**: `id` must be unique.
 - **Returns** instance.
 
@@ -558,6 +548,11 @@ req.run()
 Contributions are welcome! Found a bug, feel like documentation is lacking/confusing and needs an update, have performance/feature suggestions or simply found a typo? Let me know! :)
 
 See how to contribute [here](https://github.com/cgabriel5/http/blob/master/CONTRIBUTING.md).
+
+### TODO
+
+- [ ] Clean/re-work code.
+- [ ] Add a global `http.get` method to be able to access a request using its ID from anywhere.
 
 <a name="license"></a>
 ### License
