@@ -257,7 +257,7 @@ gulp.task("watch", function(done) {
     // start browser-syncs
     bs1.init({
         browser: options.browsers.list,
-        proxy: uri(),
+        proxy: uri("index.php"),
         port: ports.bs1.app,
         ui: {
             port: ports.bs1.ui
