@@ -271,7 +271,7 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p><a na
 <pre class="hljs"><code>req.timeout(<span class="hljs-number">5000</span>); <span class="hljs-comment">// 5 seconds</span></code></pre><p><a name="instance-methods-events"></a>
 <strong>instance.events(<code>events</code>)</strong> &mdash; Sets the request <code>events</code>.</p>
 <ul class="list">
-<li><code>id</code> (<code>Object</code>, <em>Required</em>)<ul class="list">
+<li><code>events</code> (<code>Object</code>, <em>Required</em>)<ul class="list">
 <li>Internally defaults to <code>{}</code>, empty events object (no events), when nothing explicitly set.</li>
 <li>Supported events: <code>abort</code>, <code>timeout</code>, <code>progress</code>, <code>loadstart</code>, <code>loadend</code>, <code>readystatechange</code>, <code>load</code>, <code>error</code></li>
 </ul>
@@ -294,15 +294,24 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p><a na
 <strong>instance.run</strong> &mdash; Runs the request.</p>
 <ul class="list">
 <li><strong>No Parameters</strong></li>
-<li><strong>Returns</strong> a <code>promise</code>.</li>
+<li><strong>Returns</strong> a <code>Promise</code>.</li>
 </ul>
-<p><strong>Note</strong>: Once the request is run the object gets locked. This means the object can no longer be modified via instance methods.</p>
+<p><strong>Note</strong>: This function does a bit more than just running the http request. It does the following:</p>
+<ul class="list">
+<li>Works the XHR request by normalizing options.</li>
+<li>Applies any provided event listeners.</li>
+<li>Sets any provided headers.</li>
+<li>Processes provided data.</li>
+<li>Locks the instance (once locked the instance can no longer be modified via instance methods)</li>
+<li>Sends the request.</li>
+</ul>
+<p><em>Because of this <code>instance.run</code> should be called at the very last</em>.</p>
 <pre class="hljs"><code>req.run();</code></pre><p><a name="instance-methods-getprop"></a>
 <strong>instance.getProp(property)</strong> &mdash; Gets an http object property.</p>
+<p><strong>Note</strong>: This method is more of a debugger method as nearly all of the gettable properties can be retrieved only <em>after</em> the request has been run via the <code>instance.run</code> method.</p>
 <ul class="list">
 <li><code>property</code> (<code>String</code>, <em>Required</em>)<ul class="list">
 <li>Gettable properties:<ul class="list">
-<li><code>id</code>: The ID of the request.</li>
 <li><code>callbacks</code>: Object containing all the provided callbacks.</li>
 <li><code>aborted</code>: Boolean representing whether the request was aborted or not.</li>
 <li><code>locked</code>: Boolean representing whether the request instance has locked. Gets locked after running the request via <code>instance.run</code>.</li>
@@ -320,8 +329,7 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p><a na
 </li>
 <li><strong>Returns</strong> the http instance property&#39;s value.</li>
 </ul>
-<pre class="hljs"><code>req.getProp(<span class="hljs-string">"id"</span>); <span class="hljs-comment">// returns the http's instance id</span>
-req.getProp(<span class="hljs-string">"aborted"</span>); <span class="hljs-comment">// returns Boolean representing whether the request was aborted or not</span></code></pre><p><a name="instance-methods-abort"></a>
+<pre class="hljs"><code>req.getProp(<span class="hljs-string">"aborted"</span>); <span class="hljs-comment">// returns Boolean representing whether the request was aborted or not</span></code></pre><p><a name="instance-methods-abort"></a>
 <strong>instance.abort</strong> &mdash; Aborts request.</p>
 <ul class="list">
 <li><strong>No Parameters</strong></li>

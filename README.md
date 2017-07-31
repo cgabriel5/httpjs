@@ -308,7 +308,7 @@ req.timeout(5000); // 5 seconds
 <a name="instance-methods-events"></a>
 **instance.events(`events`)** &mdash; Sets the request `events`.
 
-- `id` (`Object`, _Required_)
+- `events` (`Object`, _Required_)
     - Internally defaults to `{}`, empty events object (no events), when nothing explicitly set.
     - Supported events: `abort`, `timeout`, `progress`, `loadstart`, `loadend`, `readystatechange`, `load`, `error`
 - **Returns** instance.
@@ -333,9 +333,17 @@ req.events({
 **instance.run** &mdash; Runs the request.
 
 - **No Parameters**
-- **Returns** a `promise`.
+- **Returns** a `Promise`.
 
-**Note**: Once the request is run the object gets locked. This means the object can no longer be modified via instance methods.
+**Note**: This function does a bit more than just running the http request. It does the following:
+- Works the XHR request by normalizing options.
+- Applies any provided event listeners.
+- Sets any provided headers.
+- Processes provided data.
+- Locks the instance (once locked the instance can no longer be modified via instance methods)
+- Sends the request.
+
+_Because of this `instance.run` should be called at the very last_.
 
 ```js
 req.run();
@@ -344,9 +352,10 @@ req.run();
 <a name="instance-methods-getprop"></a>
 **instance.getProp(property)** &mdash; Gets an http object property.
 
+**Note**: This method is more of a debugger method as nearly all of the gettable properties can be retrieved only _after_ the request has been run via the `instance.run` method.
+
 - `property` (`String`, _Required_)
     - Gettable properties:
-        - `id`: The ID of the request.
         - `callbacks`: Object containing all the provided callbacks.
         - `aborted`: Boolean representing whether the request was aborted or not.
         - `locked`: Boolean representing whether the request instance has locked. Gets locked after running the request via `instance.run`.
@@ -359,7 +368,6 @@ req.run();
 - **Returns** the http instance property's value.
 
 ```js
-req.getProp("id"); // returns the http's instance id
 req.getProp("aborted"); // returns Boolean representing whether the request was aborted or not
 ```
 
