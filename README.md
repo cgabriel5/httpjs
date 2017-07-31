@@ -7,7 +7,6 @@ A lightweight JavaScript XHR wrapper.
 - [Project Setup](#project-setup)
 - [What It Does](#what-it-does)
 - [Add To Project](#add-to-project)
-- [Access Library](#access-library)
 - [API](#api)
     - [Global](#global-api)
         - [TOC](#global-methods-toc)
@@ -47,13 +46,17 @@ Project uses [this](https://github.com/cgabriel5/snippets/tree/master/boilerplat
 
 ```html
 <script src="path/to/lib.js"></script>
-```
-
-<a name="access-library"></a>
-### Access Library
-
-```js
-var http = window.app.libs.http;
+<script>
+document.onreadystatechange = function() {
+    "use strict";
+    // once all resources have loaded
+    if (document.readyState == "complete") {
+        // get the library
+        var http = window.app.libs.http;
+        // logic...
+    }
+});
+</script>
 ```
 
 <a name="api"></a>

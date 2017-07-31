@@ -18,7 +18,6 @@
 <li><a href="#project-setup">Project Setup</a></li>
 <li><a href="#what-it-does">What It Does</a></li>
 <li><a href="#add-to-project">Add To Project</a></li>
-<li><a href="#access-library">Access Library</a></li>
 <li><a href="#api">API</a><ul class="list">
 <li><a href="#global-api">Global</a><ul class="list">
 <li><a href="#global-methods-toc">TOC</a></li>
@@ -60,9 +59,18 @@
 <p><a name="add-to-project"></a></p>
 <h3 id="add-to-project">Add To Project</h3>
 <p><strong>Note</strong>: The library, both minimized and unminimized, is located in <code>lib/</code>.</p>
-<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"path/to/lib.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p><a name="access-library"></a></p>
-<h3 id="access-library">Access Library</h3>
-<pre class="hljs"><code><span class="hljs-keyword">var</span> http = <span class="hljs-built_in">window</span>.app.libs.http;</code></pre><p><a name="api"></a></p>
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"path/to/lib.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-built_in">document</span>.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-meta">    "use strict"</span>;
+    <span class="hljs-comment">// once all resources have loaded</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.readyState == <span class="hljs-string">"complete"</span>) {
+        <span class="hljs-comment">// get the library</span>
+        <span class="hljs-keyword">var</span> http = <span class="hljs-built_in">window</span>.app.libs.http;
+        <span class="hljs-comment">// logic...</span>
+    }
+});
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p><a name="api"></a></p>
 <h2 id="api">API</h2>
 <p><a name="global-api"></a></p>
 <h3 id="api-&mdash;-global">API &mdash; Global</h3>
