@@ -505,7 +505,7 @@ document.getElementById("file").addEventListener("change", function(e) {
 ```
 
 <a name="example-post-json"></a>
-**Post JSON** &mdash; Set postJSON flag to stringify data.
+**Post JSON** &mdash; Set `postJSON` flag to stringify data.
 
 ```js
 // create a new http request
@@ -531,7 +531,7 @@ req.run()
 ```
 
 <a name="example-parse-json"></a>
-**Parse JSON** &mdash; Set parseJSON flag to parse returned data.
+**Parse JSON** &mdash; Set `parseJSON` flag to parse returned data.
 
 ```js
 // create a new http request

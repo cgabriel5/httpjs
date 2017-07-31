@@ -434,7 +434,7 @@ req.run()
             form.reset(); <span class="hljs-comment">// reset form</span>
         });
 });</code></pre><p><a name="example-post-json"></a>
-<strong>Post JSON</strong> &mdash; Set postJSON flag to stringify data.</p>
+<strong>Post JSON</strong> &mdash; Set <code>postJSON</code> flag to stringify data.</p>
 <pre class="hljs"><code><span class="hljs-comment">// create a new http request</span>
 <span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"test.php?json=✔"</span>);
 <span class="hljs-comment">// set wanted options</span>
@@ -455,7 +455,7 @@ req.run()
     .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xhr</span>) </span>{
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"The XHR Error:"</span>, xhr);
     });</code></pre><p><a name="example-parse-json"></a>
-<strong>Parse JSON</strong> &mdash; Set parseJSON flag to parse returned data.</p>
+<strong>Parse JSON</strong> &mdash; Set <code>parseJSON</code> flag to parse returned data.</p>
 <pre class="hljs"><code><span class="hljs-comment">// create a new http request</span>
 <span class="hljs-keyword">var</span> req = <span class="hljs-keyword">new</span> http(<span class="hljs-string">"test.php?verified=✔&amp;return_json=✔"</span>);
 <span class="hljs-comment">// set wanted options</span>
