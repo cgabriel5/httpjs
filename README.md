@@ -73,7 +73,7 @@ document.onreadystatechange = function() {
 ### Global Methods
 
 <a name="global-methods-abortall"></a>
-**http.abortAll** &mdash; Aborts all pending requests.
+➜ **http.abortAll** &mdash; Aborts all pending requests.
 
 - **No Parameters**
 - **Returns** Nothing.
@@ -103,9 +103,9 @@ http.abortAll();
     - [instance.responseType( type )](#instance-methods-responsetype)
     - [instance.timeout( time )](#instance-methods-timeout)
     - [instance.events( events )](#instance-methods-events)
-    - [instance.run() ](#instance-methods-run)
+    - [instance.run()](#instance-methods-run)
     - [instance.getProp( propertyName )](#instance-methods-getprop)
-    - [instance.abort() ](#instance-methods-abort)
+    - [instance.abort()](#instance-methods-abort)
 
 <a name="instance-creation"></a>
 ### Instance Creation
@@ -131,7 +131,7 @@ var req = new http("posts.php?foo=bar");
 ### Instance Methods
 
 <a name="instance-methods-url"></a>
-**instance.url(`url`)** &mdash; Sets the request url.
+➜ **instance.url(`url`)** &mdash; Sets the request url.
 
 - `url` (`String`, _Required_)
     - Internally defaults to `document.URL` when nothing explicitly set.
@@ -142,7 +142,7 @@ req.url("posts.php?foo=bar");
 ```
 
 <a name="instance-methods-data"></a>
-**instance.data(`data`)** &mdash; Sets the request data.
+➜ **instance.data(`data`)** &mdash; Sets the request data.
 
 - `data` (`String|Object|FormData`, _Required_)
     - Internally defaults to `null` when nothing explicitly set.
@@ -160,7 +160,7 @@ req.data(new FormData());
 ```
 
 <a name="instance-methods-method"></a>
-**instance.method(`type`)** &mdash; Sets the request method.
+➜ **instance.method(`type`)** &mdash; Sets the request method.
 
 - `type` (`String`, _Required_)
     - Internally defaults to `"GET"` when nothing explicitly set.
@@ -173,7 +173,7 @@ req.method("POST");
 ```
 
 <a name="instance-methods-fileupload"></a>
-**instance.fileUpload(`flag`)** &mdash; Sets the `fileUpload` flag indicating whether files are being uploaded.
+➜ **instance.fileUpload(`flag`)** &mdash; Sets the `fileUpload` flag indicating whether files are being uploaded.
 
 - `flag` (`Boolean`, _Required_)
     - Internally defaults to `false` when nothing explicitly set.
@@ -185,7 +185,7 @@ req.fileUpload(true);
 ```
 
 <a name="instance-methods-processdata"></a>
-**instance.processData(`flag`)** &mdash; Sets the `processData` flag indicating whether the passed data should be processed.
+➜ **instance.processData(`flag`)** &mdash; Sets the `processData` flag indicating whether the passed data should be processed.
 
 - `flag` (`Boolean`, _Required_)
     - Internally defaults to `true` when nothing explicitly set.
@@ -199,7 +199,7 @@ req.processData(true);
 ```
 
 <a name="instance-methods-postjson"></a>
-**instance.postJSON(`flag`)** &mdash; Sets the `postJSON` flag indicating whether the data should be stringified.
+➜ **instance.postJSON(`flag`)** &mdash; Sets the `postJSON` flag indicating whether the data should be stringified.
 
 - `flag` (`Boolean`, _Required_)
     - Internally defaults to `false` when nothing explicitly set.
@@ -211,7 +211,7 @@ req.postJSON(true);
 ```
 
 <a name="instance-methods-parsejson"></a>
-**instance.parseJSON(`flag`)** &mdash; Sets the `parseJSON` flag indicating whether the responded data should be parse with `JSON.parse`.
+➜ **instance.parseJSON(`flag`)** &mdash; Sets the `parseJSON` flag indicating whether the responded data should be parse with `JSON.parse`.
 
 - `flag` (`Boolean`, _Required_)
     - Internally defaults to `false` when nothing explicitly set.
@@ -225,7 +225,7 @@ req.parseJSON(true);
 ```
 
 <a name="instance-methods-withcredentials"></a>
-**instance.withCredentials(`flag`)** &mdash; Sets the `withCredentials` flag indicating whether CORS needs to be used.
+➜ **instance.withCredentials(`flag`)** &mdash; Sets the `withCredentials` flag indicating whether CORS needs to be used.
 
 - `flag` (`Boolean`, _Required_)
     - Internally defaults to `false` when nothing explicitly set.
@@ -237,7 +237,7 @@ req.withCredentials(false);
 ```
 
 <a name="instance-methods-cache"></a>
-**instance.cache(`flag`)** &mdash; Sets the `cache` flag indicating whether cache the request.
+➜ **instance.cache(`flag`)** &mdash; Sets the `cache` flag indicating whether cache the request.
 
 - `flag` (`Boolean`, _Required_)
     - Internally defaults to `false` when nothing explicitly set.
@@ -249,7 +249,7 @@ req.cache(false);
 ```
 
 <a name="instance-methods-async"></a>
-**instance.async(`flag`)** &mdash; Sets the `async` flag indicating whether request will be async or not.
+➜ **instance.async(`flag`)** &mdash; Sets the `async` flag indicating whether request will be async or not.
 
 - `flag` (`Boolean`, _Required_)
     - Internally defaults to `true` when nothing explicitly set.
@@ -261,7 +261,7 @@ req.async(true);
 ```
 
 <a name="instance-methods-header"></a>
-**instance.header(`headerName`, `headerValue`)** &mdash; Sets the a request header.
+➜ **instance.header(`headerName`, `headerValue`)** &mdash; Sets the a request header.
 
 - `headerName` (`String`, _Required_)
 - `headerValue` (`String`, _Required_)
@@ -274,7 +274,7 @@ req.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 ```
 
 <a name="instance-methods-id"></a>
-**instance.id(`id`)** &mdash; Sets the request ID.
+➜ **instance.id(`id`)** &mdash; Sets the request ID.
 
 - `id` (`String`, _Required_)
     - Internally defaults to a randomly generated ID when nothing explicitly set.
@@ -287,7 +287,7 @@ req.id("some-unique-string-id");
 ```
 
 <a name="instance-methods-responsetype"></a>
-**instance.responseType(`type`)** &mdash; Sets the request `responseType`.
+➜ **instance.responseType(`type`)** &mdash; Sets the request `responseType`.
 
 - `type` (`String`, _Required_)
     - Internally defaults to `""` when nothing explicitly set.
@@ -298,7 +298,7 @@ req.responseType("json");
 ```
 
 <a name="instance-methods-timeout"></a>
-**instance.timeout(`time`)** &mdash; Sets the request `timeout` time.
+➜ **instance.timeout(`time`)** &mdash; Sets the request `timeout` time.
 
 - `time` (`Number`, _Required_)
     - Internally defaults to `10000` (10 seconds) when nothing explicitly set.
@@ -309,7 +309,7 @@ req.timeout(5000); // 5 seconds
 ```
 
 <a name="instance-methods-events"></a>
-**instance.events(`events`)** &mdash; Sets the request `events`.
+➜ **instance.events(`events`)** &mdash; Sets the request `events`.
 
 - `events` (`Object`, _Required_)
     - Internally defaults to `{}`, empty events object (no events), when nothing explicitly set.
@@ -333,7 +333,7 @@ req.events({
 ```
 
 <a name="instance-methods-run"></a>
-**instance.run** &mdash; Runs the request.
+➜ **instance.run** &mdash; Runs the request.
 
 - **No Parameters**
 - **Returns** a `Promise`.
@@ -353,7 +353,7 @@ req.run();
 ```
 
 <a name="instance-methods-getprop"></a>
-**instance.getProp(property)** &mdash; Gets an http object property.
+➜ **instance.getProp(property)** &mdash; Gets an http object property.
 
 **Note**: This method is more of a debugger method as nearly all of the gettable properties can be retrieved only _after_ the request has been run via the `instance.run` method.
 
@@ -375,7 +375,7 @@ req.getProp("aborted"); // returns Boolean representing whether the request was 
 ```
 
 <a name="instance-methods-abort"></a>
-**instance.abort** &mdash; Aborts request.
+➜ **instance.abort** &mdash; Aborts request.
 
 - **No Parameters**
 - **Returns** Nothing.
