@@ -211,7 +211,7 @@ req.postJSON(true);
 ```
 
 <a name="instance-methods-parsejson"></a>
-**instance.parseJSON** &mdash; Sets the `parseJSON` flag indicating whether the responded data should be parse with `JSON.parse`.
+**instance.parseJSON(`flag`)** &mdash; Sets the `parseJSON` flag indicating whether the responded data should be parse with `JSON.parse`.
 
 - `flag` (`Boolean`, _Required_)
     - Internally defaults to `false` when nothing explicitly set.
