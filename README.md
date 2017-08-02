@@ -9,12 +9,7 @@ A lightweight JavaScript XHR wrapper.
 - [Add To Project](#add-to-project)
 - [API](#api)
     - [Global](#global-api)
-        - [TOC](#global-methods-toc)
-        - [Methods](#global-methods-long)
     - [Instance](#instance-api)
-        - [TOC](#instance-methods-toc)
-        - [Creation](#instance-creation)
-        - [Methods](#instance-methods-long)
 - [Usage](#usage)
     - [Handling HTTP Errors](#handling-http-errors)
     - [POST](#example-post)
@@ -67,13 +62,13 @@ document.onreadystatechange = function() {
 
 <a name="global-methods-toc"></a>
 
-- [http.abortAll()](#global-methods-abortall)
+- [➜ global.abortAll()](#global-methods-abortall)
 
 <a name="global-methods-long"></a>
 ### Global Methods
 
 <a name="global-methods-abortall"></a>
-➜ **http.abortAll** &mdash; Aborts all pending requests.
+➜ **global.abortAll** &mdash; Aborts all pending requests.
 
 - **No Parameters**
 - **Returns** Nothing.
@@ -88,24 +83,24 @@ http.abortAll();
 <a name="instance-methods-toc"></a>
 
 - [Instance](#instance-creation)
-    - [instance.url()](#instance-methods-url)
-    - [instance.data()](#instance-methods-data)
-    - [instance.method()](#instance-methods-method)
-    - [instance.fileUpload()](#instance-methods-fileupload)
-    - [instance.processData()](#instance-methods-processdata)
-    - [instance.postJSON()](#instance-methods-postjson)
-    - [instance.parseJSON()](#instance-methods-parsejson)
-    - [instance.withCredentials()](#instance-methods-withcredentials)
-    - [instance.cache()](#instance-methods-cache)
-    - [instance.async()](#instance-methods-async)
-    - [instance.header()](#instance-methods-header)
-    - [instance.id()](#instance-methods-id)
-    - [instance.responseType()](#instance-methods-responsetype)
-    - [instance.timeout()](#instance-methods-timeout)
-    - [instance.events()](#instance-methods-events)
-    - [instance.run()](#instance-methods-run)
-    - [instance.getProp()](#instance-methods-getprop)
-    - [instance.abort()](#instance-methods-abort)
+    - [➜ instance.url()](#instance-methods-url)
+    - [➜ instance.data()](#instance-methods-data)
+    - [➜ instance.method()](#instance-methods-method)
+    - [➜ instance.fileUpload()](#instance-methods-fileupload)
+    - [➜ instance.processData()](#instance-methods-processdata)
+    - [➜ instance.postJSON()](#instance-methods-postjson)
+    - [➜ instance.parseJSON()](#instance-methods-parsejson)
+    - [➜ instance.withCredentials()](#instance-methods-withcredentials)
+    - [➜ instance.cache()](#instance-methods-cache)
+    - [➜ instance.async()](#instance-methods-async)
+    - [➜ instance.header()](#instance-methods-header)
+    - [➜ instance.id()](#instance-methods-id)
+    - [➜ instance.responseType()](#instance-methods-responsetype)
+    - [➜ instance.timeout()](#instance-methods-timeout)
+    - [➜ instance.events()](#instance-methods-events)
+    - [➜ instance.run()](#instance-methods-run)
+    - [➜ instance.getProp()](#instance-methods-getprop)
+    - [➜ instance.abort()](#instance-methods-abort)
 
 <a name="instance-creation"></a>
 ### Instance Creation
