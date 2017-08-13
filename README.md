@@ -11,13 +11,7 @@ A lightweight JavaScript XHR wrapper.
     - [Global](#global-api)
     - [Instance](#instance-api)
 - [Usage](#usage)
-    - [Handling HTTP Errors](#handling-http-errors)
-    - [POST](#example-post)
-    - [GET](#example-get)
-    - [Form Upload](#example-form-upload)
-    - [File Upload](#example-file-upload)
-    - [Post JSON](#example-post-json)
-    - [Parse JSON](#example-parse-json)
+    - [Examples](#usage-examples)
 - [Contributing](#contributing)
 - [TODO](#todo)
 - [License](#license)
@@ -383,8 +377,23 @@ req.abort();
 <a name="usage"></a>
 ### Usage
 
+<a name="usage-examples-toc"></a>
+- [Examples](#usage-examples)
+    - [Handling HTTP Errors](#handling-http-errors)
+    - [POST](#example-post)
+    - [GET](#example-get)
+    - [Form Upload](#example-form-upload)
+    - [File Upload](#example-file-upload)
+    - [Post JSON](#example-post-json)
+    - [Parse JSON](#example-parse-json)
+
+<a name="usage-examples"></a>
+### Examples
+
 <a name="handling-http-errors"></a>
 **Handling HTTP Errors** &mdash; A custom function is needed to handle HTTP errors.
+
+See below examples to understand how to use the following function.
 
 ```js
 // custom function to check status of request

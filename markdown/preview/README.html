@@ -24,13 +24,7 @@
 </ul>
 </li>
 <li><a href="#usage">Usage</a><ul class="list">
-<li><a href="#handling-http-errors">Handling HTTP Errors</a></li>
-<li><a href="#example-post">POST</a></li>
-<li><a href="#example-get">GET</a></li>
-<li><a href="#example-form-upload">Form Upload</a></li>
-<li><a href="#example-file-upload">File Upload</a></li>
-<li><a href="#example-post-json">Post JSON</a></li>
-<li><a href="#example-parse-json">Parse JSON</a></li>
+<li><a href="#usage-examples">Examples</a></li>
 </ul>
 </li>
 <li><a href="#contributing">Contributing</a></li>
@@ -337,8 +331,24 @@ req.data(<span class="hljs-keyword">new</span> FormData());</code></pre><p><a na
 <pre class="hljs"><code><span class="hljs-comment">// Aborts http request.</span>
 req.abort();</code></pre><p><a name="usage"></a></p>
 <h3 id="usage">Usage</h3>
+<p><a name="usage-examples-toc"></a></p>
+<ul class="list">
+<li><a href="#usage-examples">Examples</a><ul class="list">
+<li><a href="#handling-http-errors">Handling HTTP Errors</a></li>
+<li><a href="#example-post">POST</a></li>
+<li><a href="#example-get">GET</a></li>
+<li><a href="#example-form-upload">Form Upload</a></li>
+<li><a href="#example-file-upload">File Upload</a></li>
+<li><a href="#example-post-json">Post JSON</a></li>
+<li><a href="#example-parse-json">Parse JSON</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="usage-examples"></a></p>
+<h3 id="examples">Examples</h3>
 <p><a name="handling-http-errors"></a>
 <strong>Handling HTTP Errors</strong> &mdash; A custom function is needed to handle HTTP errors.</p>
+<p>See below examples to understand how to use the following function.</p>
 <pre class="hljs"><code><span class="hljs-comment">// custom function to check status of request</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">check_status</span>(<span class="hljs-params">xhr</span>) </span>{
     <span class="hljs-keyword">if</span> ((xhr.status &gt;= <span class="hljs-number">200</span> &amp;&amp; xhr.status &lt; <span class="hljs-number">300</span>) &amp;&amp; xhr.readyState === <span class="hljs-number">4</span>) <span class="hljs-keyword">return</span> xhr; <span class="hljs-comment">// no HTTP error</span>
