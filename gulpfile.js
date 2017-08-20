@@ -405,7 +405,7 @@ gulp.task("clean-files", function(done) {
         var path = parts.join(".");
         // this array may be populated with files needed to be ignored
         // just add the file's path to the array.
-        var exclude = ["markdown/preview/README.html"];
+        var exclude = [];
         // file ext must be of one of the following types
         if (!-~["html", "js", "css", "json"].indexOf(ext)) return false;
         // cannot be in the exclude array
@@ -415,7 +415,7 @@ gulp.task("clean-files", function(done) {
         var last = path_parts[path_parts.length - 1].toLowerCase();
         // cannot be a minimized file
         if (-~last.indexOf(".min")) return false;
-        return true; // if all checks pass the file has passed
+        return true;
     };
     // get all files
     pump([gulp.src(["**/*.*", "!node_modules/**"], {
@@ -444,7 +444,7 @@ gulp.task("findmin", function(done) {
         var last = path_parts[path_parts.length - 1].toLowerCase();
         // must be a minimized file
         if (!-~last.indexOf(".min")) return false;
-        return true; // if all checks pass the file has passed
+        return true;
     };
     // get all files
     pump([gulp.src(["**/*.*", "!node_modules/**"], {
