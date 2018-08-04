@@ -371,11 +371,16 @@ var Library = class__({
                 };
                 callbacks.progress = function(e) {
                     if (e.lengthComputable) {
-                        var percent = (e.loaded / e.total) * 100;
+                        var percent = e.loaded / e.total * 100;
                         progress.call(xhr, e, percent);
                     } else {
                         // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-                        // Unable to compute progress information since the total size is unknown
+                        // Unable to compute progress information since the total size is unknown.
+
+                        // Still call progress handler but set percent as null to help distinguish whether
+                        // there was actual progress or not.
+                        // [https://stackoverflow.com/a/11848934]
+                        progress.call(xhr, e, null);
                     }
                 };
                 callbacks.abort = function(e) {
